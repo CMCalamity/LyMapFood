@@ -1,9 +1,18 @@
 {
   "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
     {
       "source": "/Admin/Login",
       "destination": "/Admin/Login.html"
+    },
+    {
+      "source": "/Admin/Index",
+      "destination": "/Admin/Index.html"
+    },
+    {
+      "source": "/Admin/Orders",
+      "destination": "/Admin/Orders.html"
     }
   ]
 }
