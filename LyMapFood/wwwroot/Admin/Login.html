@@ -58,10 +58,10 @@
             const pass = document.getElementById('txt-password').value.trim();
 
             if (user === 'admin' && pass === '123456') {
-                // Cấp quyền và mở trang Index
-                sessionStorage.setItem('is_admin_authenticated', 'true');
+                // Đồng bộ chuẩn xác với Index.html và Orders.html
+                localStorage.setItem('admin_logged_in', 'true');
                 alert('Đăng nhập thành công!');
-                window.location.replace('/Admin/index.html');
+                window.location.replace('/Admin/Index.html');
             } else {
                 alert('Sai tên đăng nhập hoặc mật khẩu! (Thử: admin / 123456)');
             }
