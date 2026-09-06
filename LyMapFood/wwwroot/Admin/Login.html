@@ -45,7 +45,6 @@
         </form>
 
         <div class="text-center pt-2">
-            <!-- Sửa link quay lại trang chủ -->
             <a href="/index.html" class="text-xs font-extrabold text-[#2D2A26]/70 hover:text-[#E0533C] transition">← Quay lại trang chủ khách hàng</a>
         </div>
 
@@ -56,13 +55,14 @@
 
         function handleLogin(e) {
             e.preventDefault();
-            const user = document.getElementById('txt-username').value;
-            const pass = document.getElementById('txt-password').value;
+            const user = document.getElementById('txt-username').value.trim();
+            const pass = document.getElementById('txt-password').value.trim();
+
             if (user === 'admin' && pass === '123456') {
-                alert('Đăng nhập thành công!');
-                // Chuyển hướng tiếp nếu có trang dashboard
+                // Chuyển thẳng sang trang quản trị
+                window.location.href = '/Admin/Index.html';
             } else {
-                alert('Sai tên đăng nhập hoặc mật khẩu!');
+                alert('Sai tài khoản hoặc mật khẩu! Mặc định: admin / 123456');
             }
         }
     </script>
