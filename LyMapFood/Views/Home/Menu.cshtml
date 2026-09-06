@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Thực Đơn Chi Tiết - Lý Mập Food";
+}
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800;900&display=swap" rel="stylesheet">
+
+<div class="min-h-screen bg-[#FFFBF2] text-[#2D2A26] font-['Plus_Jakarta_Sans'] selection:bg-[#E0533C] selection:text-white pb-20">
+
+    <!-- HEADER -->
+    <header class="bg-[#FFFBF2] border-b-2 border-[#2D2A26] sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+            <a href="/Home/Index" class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-2xl bg-[#E0533C] text-white font-black text-xl flex items-center justify-center border-2 border-[#2D2A26] shadow-[2px_2px_0px_0px_#2D2A26]">LM</div>
+                <span class="font-black text-xl text-[#2D2A26]">LÝ MẬP <span class="text-[#E0533C]">FOOD</span></span>
+            </a>
+            <nav class="hidden md:flex gap-6 font-bold text-sm">
+                <a href="/Home/Index" class="hover:text-[#E0533C]">Trang Chủ</a>
+                <a href="/Home/Menu" class="text-[#E0533C]">Thực Đơn & Mix Calo</a>
+                <a href="/Home/Contact" class="hover:text-[#E0533C]">Liên Hệ</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- SECTION 1: BỘ LỌC DANH MỤC SẢN PHẨM -->
+    <section class="py-10 max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+            <div>
+                <h1 class="text-3xl font-black text-[#2D2A26]">DANH MỤC SẢN PHẨM</h1>
+                <p class="text-xs font-bold text-[#2D2A26]/70 mt-1">Chọn món ăn vặt & thức uống tươi nấu mới trong ngày</p>
+            </div>
+
+            <div class="flex gap-2">
+                <button class="bg-[#2D2A26] text-white px-4 py-2 rounded-xl text-xs font-black border-2 border-[#2D2A26]">Tất Cả</button>
+                <button class="bg-white text-[#2D2A26] px-4 py-2 rounded-xl text-xs font-bold border-2 border-[#2D2A26] hover:bg-amber-100">Sữa Tươi</button>
+                <button class="bg-white text-[#2D2A26] px-4 py-2 rounded-xl text-xs font-bold border-2 border-[#2D2A26] hover:bg-amber-100">Cơm Cháy</button>
+            </div>
+        </div>
+
+        <!-- PRODUCT GRID -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Item 1 -->
+            <div class="bg-white rounded-3xl border-2 border-[#2D2A26] shadow-[4px_4px_0px_0px_#2D2A26] p-5 space-y-3">
+                <img src="https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=600&q=80" class="w-full h-48 object-cover rounded-2xl border-2 border-[#2D2A26]" />
+                <div class="flex justify-between items-center">
+                    <h3 class="font-black text-lg">Sữa Đậu Nành Tươi</h3>
+                    <span class="text-[#E0533C] font-black text-lg">15.000đ</span>
+                </div>
+                <p class="text-xs font-semibold text-[#2D2A26]/70">Nấu mới nguyên chất từ hạt đậu hữu cơ. Hỗ trợ đẹp da, tim mạch (~120 kcal).</p>
+                <button class="w-full bg-[#10B981] text-white font-black py-2.5 rounded-xl border-2 border-[#2D2A26] shadow-[2px_2px_0px_0px_#2D2A26]">Chọn Món Này</button>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="bg-white rounded-3xl border-2 border-[#2D2A26] shadow-[4px_4px_0px_0px_#2D2A26] p-5 space-y-3">
+                <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=600&q=80" class="w-full h-48 object-cover rounded-2xl border-2 border-[#2D2A26]" />
+                <div class="flex justify-between items-center">
+                    <h3 class="font-black text-lg">Sữa Bắp Tươi Béo Ngậy</h3>
+                    <span class="text-[#E0533C] font-black text-lg">18.000đ</span>
+                </div>
+                <p class="text-xs font-semibold text-[#2D2A26]/70">Nấu từ bắp ngọt tươi nguyên quả. Bổ sung Vitamin A & xơ (~160 kcal).</p>
+                <button class="w-full bg-[#10B981] text-white font-black py-2.5 rounded-xl border-2 border-[#2D2A26] shadow-[2px_2px_0px_0px_#2D2A26]">Chọn Món Này</button>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="bg-white rounded-3xl border-2 border-[#2D2A26] shadow-[4px_4px_0px_0px_#2D2A26] p-5 space-y-3">
+                <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80" class="w-full h-48 object-cover rounded-2xl border-2 border-[#2D2A26]" />
+                <div class="flex justify-between items-center">
+                    <h3 class="font-black text-lg">Cơm Cháy Chà Bông</h3>
+                    <span class="text-[#E0533C] font-black text-lg">35.000đ</span>
+                </div>
+                <p class="text-xs font-semibold text-[#2D2A26]/70">Cơm cháy giòn rụm, chà bông phủ kín kèm sốt mắm ớt độc quyền (Gói 150g).</p>
+                <button class="w-full bg-[#E0533C] text-white font-black py-2.5 rounded-xl border-2 border-[#2D2A26] shadow-[2px_2px_0px_0px_#2D2A26]">Chọn Món Này</button>
+            </div>
+        </div>
+    </section>
+</div>

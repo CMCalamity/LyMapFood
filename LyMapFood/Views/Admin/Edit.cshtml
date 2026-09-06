@@ -1,0 +1,48 @@
+﻿@model LyMapFood.Models.Product
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>Sửa Sản Phẩm - Admin Lý Mập</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-100 font-['Plus_Jakarta_Sans'] p-8 text-slate-800">
+    <div class="max-w-2xl mx-auto bg-white p-8 rounded-3xl border-2 border-[#2D2A26] shadow-[6px_6px_0px_0px_#2D2A26] space-y-6">
+        <div class="flex justify-between items-center border-b pb-4">
+            <h1 class="text-2xl font-black text-[#2D2A26]">CHỈNH SỬA SẢN PHẨM</h1>
+            <a href="/Admin/Index" class="text-xs font-bold text-slate-500 hover:text-black">← Quay lại danh sách</a>
+        </div>
+
+        <form action="/Admin/Edit" method="post" class="space-y-4">
+            <input type="hidden" name="Id" value="@Model.Id" />
+            
+            <div>
+                <label class="block text-xs font-black mb-1">TÊN SẢN PHẨM:</label>
+                <input type="text" name="Name" value="@Model.Name" class="w-full bg-[#FFFBF2] p-3 rounded-xl border-2 border-[#2D2A26] text-xs font-bold" required />
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs font-black mb-1">GIÁ BÁN (ĐỒNG):</label>
+                    <input type="number" name="Price" value="@Model.Price" class="w-full bg-[#FFFBF2] p-3 rounded-xl border-2 border-[#2D2A26] text-xs font-bold" required />
+                </div>
+                <div>
+                    <label class="block text-xs font-black mb-1">CALO (KCAL):</label>
+                    <input type="number" name="Calo" value="@Model.Calo" class="w-full bg-[#FFFBF2] p-3 rounded-xl border-2 border-[#2D2A26] text-xs font-bold" required />
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-xs font-black mb-1">LINK HÌNH ẢNH (URL):</label>
+                <input type="text" name="ImageUrl" value="@Model.ImageUrl" class="w-full bg-[#FFFBF2] p-3 rounded-xl border-2 border-[#2D2A26] text-xs font-bold" required />
+            </div>
+
+            <button type="submit" class="w-full bg-[#E0533C] text-white font-black py-3.5 rounded-xl border-2 border-[#2D2A26] shadow-[3px_3px_0px_0px_#2D2A26]">LƯU CẬP NHẬT</button>
+        </form>
+    </div>
+</body>
+</html>

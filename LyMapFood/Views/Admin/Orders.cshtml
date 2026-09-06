@@ -1,0 +1,46 @@
+﻿@{ Layout = null; }
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>Đơn Hàng - Admin Lý Mập</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-100 font-['Plus_Jakarta_Sans'] text-slate-800">
+    <div class="flex min-h-screen">
+        <aside class="w-64 bg-[#2D2A26] text-white p-6 space-y-6 flex flex-col justify-between shrink-0">
+            <div class="space-y-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-[#E0533C] text-white font-black text-xl flex items-center justify-center">LM</div>
+                    <span class="font-black text-lg">LÝ MẬP ADMIN</span>
+                </div>
+                <nav class="space-y-2 text-sm font-bold">
+                    <a href="/Admin/Index" class="flex items-center gap-3 hover:bg-slate-800 p-3 rounded-xl transition">
+                        <i data-lucide="package" class="w-5 h-5"></i><span>Quản Lý Sản Phẩm</span>
+                    </a>
+                    <a href="/Admin/Orders" class="flex items-center gap-3 bg-[#E0533C] text-white p-3 rounded-xl">
+                        <i data-lucide="shopping-cart" class="w-5 h-5"></i><span>Quản Lý Đơn Hàng</span>
+                    </a>
+                </nav>
+            </div>
+            <a href="/Home/Index" target="_blank" class="text-amber-400 text-xs font-bold">← Xem Trang Khách</a>
+        </aside>
+
+        <main class="flex-1 p-8 space-y-6">
+            <h1 class="text-2xl font-black text-slate-900">DANH SÁCH ĐƠN HÀNG MỚI</h1>
+            <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+                <div class="flex justify-between items-center border-b pb-3">
+                    <div>
+                        <span class="font-black text-slate-900">Đơn #1001 - Nguyễn Văn A</span>
+                        <p class="text-xs text-slate-500">Sữa Đậu Nành (70% đường) + Thạch lá nếp • 18.000đ</p>
+                    </div>
+                    <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full">Đã Gửi Qua Zalo</span>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

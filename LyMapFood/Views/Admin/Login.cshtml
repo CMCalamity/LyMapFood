@@ -1,0 +1,69 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng Nhập Quản Trị - Lý Mập Food</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-[#FFFBF2] text-[#2D2A26] font-['Plus_Jakarta_Sans'] min-h-screen flex items-center justify-center p-4">
+
+    <div class="bg-white p-8 rounded-3xl border-2 border-[#2D2A26] shadow-[8px_8px_0px_0px_#2D2A26] max-w-md w-full space-y-6">
+        
+        <!-- Header Form -->
+        <div class="text-center space-y-2">
+            <div class="w-14 h-14 rounded-2xl bg-[#E0533C] text-white font-black text-3xl flex items-center justify-center mx-auto border-2 border-[#2D2A26] shadow-[3px_3px_0px_0px_#2D2A26]">
+                LM
+            </div>
+            <h1 class="text-2xl font-black tracking-tight text-[#2D2A26]">ĐĂNG NHẬP ADMIN</h1>
+            <p class="text-xs font-bold text-[#2D2A26]/70">Hệ thống quản trị nội bộ Lý Mập Food</p>
+        </div>
+
+        <!-- Báo lỗi nếu nhập sai -->
+        @if (ViewBag.Error != null)
+        {
+            <div class="bg-red-100 border-2 border-red-500 text-red-700 p-3 rounded-xl text-xs font-bold text-center">
+                @ViewBag.Error
+            </div>
+        }
+
+        <!-- Form Đăng nhập -->
+        <form action="/Admin/Login" method="post" class="space-y-4">
+            <div>
+                <label class="block text-xs font-black mb-1.5">TÊN ĐĂNG NHẬP:</label>
+                <div class="relative">
+                    <input type="text" name="username" placeholder="Nhập admin" class="w-full bg-[#FFFBF2] p-3 pl-10 rounded-xl border-2 border-[#2D2A26] text-xs font-bold focus:outline-none focus:border-[#E0533C]" required />
+                    <i data-lucide="user" class="w-4 h-4 text-[#2D2A26] absolute left-3.5 top-3.5"></i>
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-xs font-black mb-1.5">MẬT KHẨU:</label>
+                <div class="relative">
+                    <input type="password" name="password" placeholder="Nhập 123456" class="w-full bg-[#FFFBF2] p-3 pl-10 rounded-xl border-2 border-[#2D2A26] text-xs font-bold focus:outline-none focus:border-[#E0533C]" required />
+                    <i data-lucide="lock" class="w-4 h-4 text-[#2D2A26] absolute left-3.5 top-3.5"></i>
+                </div>
+            </div>
+
+            <button type="submit" class="w-full bg-[#E0533C] hover:bg-[#c9432b] text-white font-black py-3.5 rounded-xl border-2 border-[#2D2A26] shadow-[3px_3px_0px_0px_#2D2A26] transition text-xs tracking-wider uppercase">
+                ĐĂNG NHẬP HỆ THỐNG
+            </button>
+        </form>
+
+        <div class="text-center pt-2">
+            <a href="/Home/Index" class="text-xs font-extrabold text-[#2D2A26]/70 hover:text-[#E0533C] transition">← Quay lại trang chủ khách hàng</a>
+        </div>
+
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
