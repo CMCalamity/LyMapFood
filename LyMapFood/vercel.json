@@ -1,15 +1,11 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "*.csproj",
-      "use": "vercel-dotnet"
-    }
-  ],
+  "public": true,
+  "cleanUrls": true,
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/"
+      "dest": "/wwwroot/$1"
     }
   ]
 }
