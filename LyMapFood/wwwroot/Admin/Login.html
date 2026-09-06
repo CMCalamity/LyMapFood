@@ -11,7 +11,6 @@
 <body class="bg-[#FFFBF2] text-[#2D2A26] font-['Plus_Jakarta_Sans'] min-h-screen flex items-center justify-center p-4">
 
     <div class="bg-white p-8 rounded-3xl border-2 border-[#2D2A26] shadow-[8px_8px_0px_0px_#2D2A26] max-w-md w-full space-y-6">
-
         <div class="text-center space-y-2">
             <div class="w-14 h-14 rounded-2xl bg-[#E0533C] text-white font-black text-3xl flex items-center justify-center mx-auto border-2 border-[#2D2A26] shadow-[3px_3px_0px_0px_#2D2A26]">
                 LM
@@ -20,7 +19,6 @@
             <p class="text-xs font-bold text-[#2D2A26]/70">Hệ thống quản trị nội bộ Lý Mập Food</p>
         </div>
 
-        <!-- Form Đăng nhập -->
         <form onsubmit="handleLogin(event)" class="space-y-4">
             <div>
                 <label class="block text-xs font-black mb-1.5">TÊN ĐĂNG NHẬP:</label>
@@ -46,7 +44,6 @@
         <div class="text-center pt-2">
             <a href="/index.html" class="text-xs font-extrabold text-[#2D2A26]/70 hover:text-[#E0533C] transition">← Quay lại trang chủ khách hàng</a>
         </div>
-
     </div>
 
     <script>
@@ -54,16 +51,15 @@
 
         function handleLogin(e) {
             e.preventDefault();
-            const user = document.getElementById('txt-username').value.trim();
-            const pass = document.getElementById('txt-password').value.trim();
+            const u = document.getElementById('txt-username').value.trim();
+            const p = document.getElementById('txt-password').value.trim();
 
-            if (user === 'admin' && pass === '123456') {
-                // Đồng bộ chuẩn xác với Index.html và Orders.html
+            if (u === 'admin' && p === '123456') {
                 localStorage.setItem('admin_logged_in', 'true');
                 alert('Đăng nhập thành công!');
-                window.location.replace('/Admin/Index.html');
+                window.location.href = '/Admin/Index.html';
             } else {
-                alert('Sai tên đăng nhập hoặc mật khẩu! (Thử: admin / 123456)');
+                alert('Sai tài khoản hoặc mật khẩu! Mặc định: admin / 123456');
             }
         }
     </script>
