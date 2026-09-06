@@ -1,0 +1,9 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/Admin/Login",
+      "destination": "/Admin/Login.html"
+    }
+  ]
+}
