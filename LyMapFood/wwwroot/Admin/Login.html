@@ -2,7 +2,15 @@
 <html lang="vi">
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quản Trị Hệ Thống - Lý Mập Food</title>
+    <!-- BẢO VỆ CHẶN TRUY CẬP TRỰC TIẾP -->
+    <script>
+        if (sessionStorage.getItem('is_admin_authenticated') !== 'true') {
+            alert('Cảnh báo: Bạn chưa đăng nhập quyền Admin! Vui lòng đăng nhập.');
+            window.location.replace('/Admin/Login.html');
+        }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
@@ -23,7 +31,7 @@
                         <i data-lucide="package" class="w-5 h-5"></i>
                         <span>Quản Lý Sản Phẩm</span>
                     </a>
-                    <a href="javascript:void(0)" onclick="alert('Tính năng quản lý đơn hàng đang phát triển')" class="flex items-center gap-3 hover:bg-slate-800 p-3 rounded-xl transition">
+                    <a href="/Admin/Orders.html" class="flex items-center gap-3 hover:bg-slate-800 p-3 rounded-xl transition">
                         <i data-lucide="shopping-cart" class="w-5 h-5"></i>
                         <span>Quản Lý Đơn Hàng</span>
                     </a>
@@ -31,6 +39,10 @@
                         <i data-lucide="external-link" class="w-5 h-5"></i>
                         <span>Xem Trang Khách</span>
                     </a>
+                    <button onclick="logoutAdmin()" class="w-full flex items-center gap-3 hover:bg-red-900/50 text-red-400 p-3 rounded-xl transition text-left mt-4">
+                        <i data-lucide="log-out" class="w-5 h-5"></i>
+                        <span>Đăng Xuất</span>
+                    </button>
                 </nav>
             </div>
 
@@ -49,7 +61,7 @@
                     <p class="text-xs font-semibold text-slate-500 mt-1">Chỉnh sửa giá, cập nhật trạng thái món và thông tin calo cho cửa hàng</p>
                 </div>
 
-                <button onclick="alert('Mở form thêm món')" class="bg-[#E0533C] hover:bg-[#c9432b] text-white font-black px-5 py-2.5 rounded-xl border-2 border-[#2D2A26] shadow-[2px_2px_0px_0px_#2D2A26] flex items-center gap-2 text-xs">
+                <button onclick="alert('Tính năng thêm món mới')" class="bg-[#E0533C] hover:bg-[#c9432b] text-white font-black px-5 py-2.5 rounded-xl border-2 border-[#2D2A26] shadow-[2px_2px_0px_0px_#2D2A26] flex items-center gap-2 text-xs">
                     <i data-lucide="plus-circle" class="w-4 h-4"></i>
                     <span>THÊM MÓN MỚI</span>
                 </button>
@@ -71,7 +83,7 @@
                     <tbody class="divide-y divide-slate-100 text-sm font-semibold">
                         <tr class="hover:bg-slate-50/80 transition">
                             <td class="p-4">
-                                <img src="https://images.unsplash.com/photo-1528750997573-59b89d56f4f7?auto=format&fit=crop&w=600&q=80" class="w-12 h-12 rounded-xl object-cover border border-slate-200" />
+                                <img src="https://images.unsplash.com/photo-1528750997573-59b89d56f4f7?auto=format&fit=crop&w=600&q=80" class="w-12 h-12 rounded-xl object-cover border border-slate-200" alt="Sữa đậu nành" />
                             </td>
                             <td class="p-4 font-black text-slate-900">Sữa Đậu Nành Tươi</td>
                             <td class="p-4 text-[#E0533C] font-black">15,000 đ</td>
@@ -80,13 +92,13 @@
                                 <span class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-1 rounded-full font-bold">Đang Bán</span>
                             </td>
                             <td class="p-4 text-center space-x-2">
-                                <button onclick="alert('Sửa món 1')" class="bg-slate-100 hover:bg-slate-200 text-slate-800 px-3 py-1.5 rounded-lg text-xs font-bold border">Sửa</button>
+                                <button onclick="alert('Chỉnh sửa: Sữa Đậu Nành')" class="bg-slate-100 hover:bg-slate-200 text-slate-800 px-3 py-1.5 rounded-lg text-xs font-bold border">Sửa</button>
                                 <button onclick="if(confirm('Bạn có chắc muốn xóa món này?')) this.closest('tr').remove();" class="bg-red-50 hover:bg-red-100 text-red-600 px-3 py-1.5 rounded-lg text-xs font-bold border border-red-200">Xóa</button>
                             </td>
                         </tr>
                         <tr class="hover:bg-slate-50/80 transition">
                             <td class="p-4">
-                                <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80" class="w-12 h-12 rounded-xl object-cover border border-slate-200" />
+                                <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80" class="w-12 h-12 rounded-xl object-cover border border-slate-200" alt="Sữa bắp tươi" />
                             </td>
                             <td class="p-4 font-black text-slate-900">Sữa Bắp Tươi Béo Ngậy</td>
                             <td class="p-4 text-[#E0533C] font-black">18,000 đ</td>
@@ -95,13 +107,13 @@
                                 <span class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-1 rounded-full font-bold">Đang Bán</span>
                             </td>
                             <td class="p-4 text-center space-x-2">
-                                <button onclick="alert('Sửa món 2')" class="bg-slate-100 hover:bg-slate-200 text-slate-800 px-3 py-1.5 rounded-lg text-xs font-bold border">Sửa</button>
+                                <button onclick="alert('Chỉnh sửa: Sữa Bắp Tươi')" class="bg-slate-100 hover:bg-slate-200 text-slate-800 px-3 py-1.5 rounded-lg text-xs font-bold border">Sửa</button>
                                 <button onclick="if(confirm('Bạn có chắc muốn xóa món này?')) this.closest('tr').remove();" class="bg-red-50 hover:bg-red-100 text-red-600 px-3 py-1.5 rounded-lg text-xs font-bold border border-red-200">Xóa</button>
                             </td>
                         </tr>
                         <tr class="hover:bg-slate-50/80 transition">
                             <td class="p-4">
-                                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" class="w-12 h-12 rounded-xl object-cover border border-slate-200" />
+                                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" class="w-12 h-12 rounded-xl object-cover border border-slate-200" alt="Cơm cháy chà bông" />
                             </td>
                             <td class="p-4 font-black text-slate-900">Cơm Cháy Siêu Chà Bông</td>
                             <td class="p-4 text-[#E0533C] font-black">35,000 đ</td>
@@ -110,7 +122,7 @@
                                 <span class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-1 rounded-full font-bold">Đang Bán</span>
                             </td>
                             <td class="p-4 text-center space-x-2">
-                                <button onclick="alert('Sửa món 3')" class="bg-slate-100 hover:bg-slate-200 text-slate-800 px-3 py-1.5 rounded-lg text-xs font-bold border">Sửa</button>
+                                <button onclick="alert('Chỉnh sửa: Cơm Cháy Siêu Chà Bông')" class="bg-slate-100 hover:bg-slate-200 text-slate-800 px-3 py-1.5 rounded-lg text-xs font-bold border">Sửa</button>
                                 <button onclick="if(confirm('Bạn có chắc muốn xóa món này?')) this.closest('tr').remove();" class="bg-red-50 hover:bg-red-100 text-red-600 px-3 py-1.5 rounded-lg text-xs font-bold border border-red-200">Xóa</button>
                             </td>
                         </tr>
@@ -123,6 +135,12 @@
 
     <script>
         lucide.createIcons();
+
+        function logoutAdmin() {
+            sessionStorage.removeItem('is_admin_authenticated');
+            alert('Đã đăng xuất tài khoản quản trị!');
+            window.location.replace('/Admin/Login.html');
+        }
     </script>
 </body>
 </html>
