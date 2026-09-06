@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đơn Hàng - Admin Lý Mập</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-100 font-['Plus_Jakarta_Sans'] text-slate-800">
+    <script>
+        if (localStorage.getItem('admin_logged_in') !== 'true') {
+            window.location.href = '/Admin/Login.html';
+        }
+    </script>
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar Admin -->
+        <aside class="w-64 bg-[#2D2A26] text-white p-6 space-y-6 flex flex-col justify-between shrink-0">
+            <div class="space-y-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-[#E0533C] text-white font-black text-xl flex items-center justify-center">LM</div>
+                    <span class="font-black text-lg">LÝ MẬP ADMIN</span>
+                </div>
+
+                <nav class="space-y-2 text-sm font-bold">
+                    <a href="/Admin/Index.html" class="flex items-center gap-3 hover:bg-slate-800 p-3 rounded-xl transition">
+                        <i data-lucide="package" class="w-5 h-5"></i>
+                        <span>Quản Lý Sản Phẩm</span>
+                    </a>
+                    <a href="/Admin/Orders.html" class="flex items-center gap-3 bg-[#E0533C] text-white p-3 rounded-xl">
+                        <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+                        <span>Quản Lý Đơn Hàng</span>
+                    </a>
+                    <a href="/index.html" class="flex items-center gap-3 hover:bg-slate-800 p-3 rounded-xl transition text-amber-400">
+                        <i data-lucide="external-link" class="w-5 h-5"></i>
+                        <span>Xem Trang Khách</span>
+                    </a>
+                    <button onclick="localStorage.removeItem('admin_logged_in'); window.location.href='/Admin/Login.html';" class="w-full flex items-center gap-3 hover:bg-red-900/60 text-red-400 p-3 rounded-xl transition text-left mt-4">
+                        <i data-lucide="log-out" class="w-5 h-5"></i>
+                        <span>Đăng Xuất</span>
+                    </button>
+                </nav>
+            </div>
+
+            <div class="text-xs text-slate-400">
+                Logged in as: <strong>Admin Lý Mập</strong>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8 space-y-6">
+            <h1 class="text-2xl font-black text-slate-900">DANH SÁCH ĐƠN HÀNG MỚI</h1>
+
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 flex justify-between items-center">
+                <div>
+                    <h3 class="font-bold text-base text-slate-900">Đơn #1001 – Nguyễn Văn A</h3>
+                    <p class="text-xs text-slate-500 mt-1 font-semibold">Sữa Đậu Nành (70% đường) + Thạch lá nếp • 18.000đ</p>
+                </div>
+                <span class="bg-emerald-100 text-emerald-800 text-xs px-3 py-1 rounded-full font-bold">Đã Gửi Qua Zalo</span>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
