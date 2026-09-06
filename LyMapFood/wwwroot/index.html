@@ -1,16 +1,4 @@
 ﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
-
-</body>
-</html>
-
-
-<!DOCTYPE html>
 <html class="scroll-smooth" lang="vi">
 <head>
     <meta charset="utf-8" />
@@ -206,7 +194,8 @@
                     <span class="material-symbols-outlined text-2xl">search</span>
                 </button>
 
-                <a href="/Admin/Login" target="_blank" class="text-xs font-bold px-3.5 py-2 rounded-full bg-surface-container-high hover:bg-tertiary-fixed text-slate-700 transition flex items-center gap-1">
+                <!-- Nút Admin trỏ chuẩn đến file login html tĩnh -->
+                <a href="/Admin/Login/index.html" class="text-xs font-bold px-3.5 py-2 rounded-full bg-surface-container-high hover:bg-tertiary-fixed text-slate-700 transition flex items-center gap-1">
                     <span class="material-symbols-outlined text-base">admin_panel_settings</span>
                     <span class="hidden sm:inline">Admin</span>
                 </a>
@@ -519,28 +508,24 @@
             </div>
         </section>
 
-        <!-- 8. MODAL CHI TIẾT SẢN PHẨM PHẲNG LIỀN KHỐI (ĐÃ TÁCH NÚT TẮT ✕ VÀ BADGE HOÀN TOÀN) -->
+        <!-- 8. MODAL CHI TIẾT SẢN PHẨM -->
         <div id="product-modal" class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 hidden overflow-y-auto">
             <div class="bg-white rounded-[2rem] max-w-3xl w-full p-0 shadow-2xl relative border border-slate-100 animate-fade-in-up my-auto overflow-hidden flex flex-col md:flex-row">
 
-                <!-- Nút tắt (Được neo góc trên bên phải độc lập, không bị đè) -->
                 <button onclick="closeDetail()" class="absolute top-4 right-4 bg-slate-100/90 text-slate-700 w-8 h-8 rounded-full flex items-center justify-center font-bold hover:bg-slate-200 transition z-50 shadow-sm" title="Đóng">
                     ✕
                 </button>
 
-                <!-- Left: Ảnh Full-bleed -->
                 <div class="md:w-5/12 relative h-64 md:h-auto bg-slate-50">
                     <img id="modal-img" src="" class="w-full h-full object-cover" alt="Chi tiết món" />
                     <span class="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-sm uppercase tracking-wider">Tươi Mới Mỗi Ngày</span>
                 </div>
 
-                <!-- Right: Thông tin -->
                 <div class="md:w-7/12 p-6 sm:p-8 flex flex-col bg-white">
                     <div class="pr-10 mb-2">
                         <h3 id="modal-title" class="font-headline font-extrabold text-2xl text-slate-900 leading-tight">Tên món ăn</h3>
                     </div>
 
-                    <!-- Hàng giá tiền & Badge Healthy nằm cùng nhau phía dưới tiêu đề -->
                     <div class="flex items-center gap-3 mb-3">
                         <div id="modal-price" class="font-headline font-black text-xl text-primary">0đ</div>
                         <div class="bg-[#B1F0CE] text-[#0F5238] text-[11px] font-black px-2.5 py-1 rounded-full flex items-center gap-1 shrink-0">
@@ -555,7 +540,6 @@
                         <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">local_fire_department</span> <span id="modal-sold">4.500+</span> Đã bán</span>
                     </div>
 
-                    <!-- Bảng Dinh Dưỡng Thực Tế & Thanh Tiến Trình Liền Khối -->
                     <div class="grid grid-cols-4 gap-2 text-center mb-6">
                         <div>
                             <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1">Calo</div>
@@ -833,13 +817,13 @@
                     <h4 class="font-label-bold text-label-bold text-on-surface uppercase tracking-wider mb-4">Thông Tin</h4>
                     <a class="block text-on-surface-variant hover:text-primary transition" href="#contact">Địa Chỉ & Hotline</a>
                     <a class="block text-on-surface-variant hover:text-primary transition" href="#hero">Bán Kính Giao Hàng</a>
-                    <a class="block text-on-surface-variant hover:text-primary transition" href="/Admin/Login">Quản Trị Viên</a>
+                    <a class="block text-on-surface-variant hover:text-primary transition" href="/Admin/Login/index.html">Quản Trị Viên</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- SCRIPT QUẢN LÝ DỮ LIỆU SẢN PHẨM & POPUP (ĐÃ TÁCH NÚT ĐÓNG KHÔNG LỒNG BADGE) -->
+    <!-- SCRIPT QUẢN LÝ DỮ LIỆU SẢN PHẨM & POPUP -->
     <script>
         lucide.createIcons();
 
@@ -954,7 +938,6 @@
             }
         };
 
-        // 1. TÌM KIẾM
         function toggleSearchBar() {
             const searchContainer = document.getElementById('search-bar-container');
             searchContainer.classList.toggle('hidden');
@@ -979,7 +962,6 @@
             });
         }
 
-        // 2. LIVE BATCH TIME
         function updateLiveBatchStatus() {
             const now = new Date();
             const currentHour = now.getHours();
@@ -1031,7 +1013,6 @@
         updateLiveBatchStatus();
         setInterval(updateLiveBatchStatus, 60000);
 
-        // 3. MỞ POPUP CHI TIẾT SẢN PHẨM
         function openDetail(id) {
             const item = productsData[id];
             if (!item) return;
@@ -1070,7 +1051,6 @@
             document.getElementById('product-modal').classList.add('hidden');
         }
 
-        // 4. LỌC DANH MỤC
         function filterMenu(category, btnElement) {
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.className = "filter-btn bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed font-label-bold text-label-bold px-6 py-2.5 rounded-full whitespace-nowrap active:scale-95 transition";
@@ -1088,7 +1068,6 @@
             });
         }
 
-        // 5. TÍNH CALO
         let currentBase = 'Sữa Đậu Nành';
         let currentBaseCalo = 120;
         let currentSugar = '100% Chuẩn vị';
@@ -1160,10 +1139,5 @@
             });
         });
     </script>
-
-    <!-- Visual Studio Browser Link -->
-    <script type="text/javascript" src="/_vs/browserLink" async="async" id="__browserLink_initializationData" data-requestId="f58f4fcaeca941ee96663d6f8742b4b7" data-requestMappingFromServer="false" data-connectUrl="http://localhost:58710/18f9c169befc47239566c4161c4e2be4/browserLink"></script>
-    <!-- End Browser Link -->
-    <script src="/_framework/aspnetcore-browser-refresh.js"></script>
 </body>
 </html>
