@@ -4,22 +4,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quản Trị Hệ Thống - Lý Mập Food</title>
+    <script>
+        if (localStorage.getItem('admin_logged_in') !== 'true') {
+            alert('Bạn chưa đăng nhập quyền Admin!');
+            window.location.replace('/Admin/Login.html');
+        }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 </head>
 <body class="bg-slate-100 font-['Plus_Jakarta_Sans'] text-slate-800">
 
-    <!-- BẢO VỆ ĐĂNG NHẬP: Chưa login sẽ bị đẩy về trang Login -->
-    <script>
-        if (localStorage.getItem('admin_logged_in') !== 'true') {
-            alert('Bạn chưa đăng nhập! Vui lòng đăng nhập quyền Admin.');
-            window.location.href = '/Admin/Login.html';
-        }
-    </script>
-
     <div class="flex min-h-screen">
-        <!-- Sidebar Admin -->
+        <!-- Sidebar -->
         <aside class="w-64 bg-[#2D2A26] text-white p-6 space-y-6 flex flex-col justify-between shrink-0">
             <div class="space-y-6">
                 <div class="flex items-center gap-3">
@@ -36,7 +34,7 @@
                         <i data-lucide="shopping-cart" class="w-5 h-5"></i>
                         <span>Quản Lý Đơn Hàng</span>
                     </a>
-                    <a href="/index.html" class="flex items-center gap-3 hover:bg-slate-800 p-3 rounded-xl transition text-amber-400">
+                    <a href="/index.html" target="_blank" class="flex items-center gap-3 hover:bg-slate-800 p-3 rounded-xl transition text-amber-400">
                         <i data-lucide="external-link" class="w-5 h-5"></i>
                         <span>Xem Trang Khách</span>
                     </a>
@@ -52,23 +50,25 @@
             </div>
         </aside>
 
-        <!-- Main Content Admin -->
+        <!-- Main Content -->
         <main class="flex-1 p-8 space-y-6">
-
-            <!-- Top Dashboard Bar -->
             <div class="flex justify-between items-center bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
                 <div>
                     <h1 class="text-2xl font-black text-slate-900">QUẢN LÝ THỰC ĐƠN SẢN PHẨM</h1>
-                    <p class="text-xs font-semibold text-slate-500 mt-1">Chỉnh sửa giá, cập nhật trạng thái món và thông tin calo cho cửa hàng</p>
+                    <p class="text-xs font-semibold text-slate-500 mt-1">Dữ liệu được lưu trực tiếp vào bộ nhớ hệ thống</p>
                 </div>
-
-                <button onclick="alert('Tính năng thêm món mới!')" class="bg-[#E0533C] hover:bg-[#c9432b] text-white font-black px-5 py-2.5 rounded-xl border-2 border-[#2D2A26] shadow-[2px_2px_0px_0px_#2D2A26] flex items-center gap-2 text-xs">
-                    <i data-lucide="plus-circle" class="w-4 h-4"></i>
-                    <span>THÊM MÓN MỚI</span>
-                </button>
+                <div class="flex gap-2">
+                    <button onclick="resetDefaultMenu()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-4 py-2.5 rounded-xl border text-xs">
+                        Khôi Phục Gốc
+                    </button>
+                    <a href="/Admin/Create.html" class="bg-[#E0533C] hover:bg-[#c9432b] text-white font-black px-5 py-2.5 rounded-xl border-2 border-[#2D2A26] shadow-[2px_2px_0px_0px_#2D2A26] flex items-center gap-2 text-xs">
+                        <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                        <span>THÊM MÓN MỚI</span>
+                    </a>
+                </div>
             </div>
 
-            <!-- Bảng Danh Sách Món Ăn -->
+            <!-- Bảng Sản Phẩm -->
             <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
                 <table class="w-full text-left border-collapse">
                     <thead>
@@ -81,67 +81,82 @@
                             <th class="p-4 text-center">Thao Tác</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-slate-100 text-sm font-semibold">
-                        <tr class="hover:bg-slate-50/80 transition">
-                            <td class="p-4">
-                                <img src="https://images.unsplash.com/photo-1528750997573-59b89d56f4f7?auto=format&fit=crop&w=600&q=80" class="w-12 h-12 rounded-xl object-cover border border-slate-200" alt="Sữa đậu nành" />
-                            </td>
-                            <td class="p-4 font-black text-slate-900">Sữa Đậu Nành Tươi</td>
-                            <td class="p-4 text-[#E0533C] font-black">15,000 đ</td>
-                            <td class="p-4"><span class="bg-amber-100 text-amber-800 text-xs px-2.5 py-1 rounded-full font-bold">~120 kcal</span></td>
-                            <td class="p-4">
-                                <span class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-1 rounded-full font-bold">Đang Bán</span>
-                            </td>
-                            <td class="p-4 text-center space-x-2">
-                                <button onclick="alert('Chỉnh sửa: Sữa Đậu Nành')" class="bg-slate-100 hover:bg-slate-200 text-slate-800 px-3 py-1.5 rounded-lg text-xs font-bold border">Sửa</button>
-                                <button onclick="if(confirm('Bạn có chắc muốn xóa món này?')) this.closest('tr').remove();" class="bg-red-50 hover:bg-red-100 text-red-600 px-3 py-1.5 rounded-lg text-xs font-bold border border-red-200">Xóa</button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-50/80 transition">
-                            <td class="p-4">
-                                <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80" class="w-12 h-12 rounded-xl object-cover border border-slate-200" alt="Sữa bắp tươi" />
-                            </td>
-                            <td class="p-4 font-black text-slate-900">Sữa Bắp Tươi Béo Ngậy</td>
-                            <td class="p-4 text-[#E0533C] font-black">18,000 đ</td>
-                            <td class="p-4"><span class="bg-amber-100 text-amber-800 text-xs px-2.5 py-1 rounded-full font-bold">~160 kcal</span></td>
-                            <td class="p-4">
-                                <span class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-1 rounded-full font-bold">Đang Bán</span>
-                            </td>
-                            <td class="p-4 text-center space-x-2">
-                                <button onclick="alert('Chỉnh sửa: Sữa Bắp Tươi')" class="bg-slate-100 hover:bg-slate-200 text-slate-800 px-3 py-1.5 rounded-lg text-xs font-bold border">Sửa</button>
-                                <button onclick="if(confirm('Bạn có chắc muốn xóa món này?')) this.closest('tr').remove();" class="bg-red-50 hover:bg-red-100 text-red-600 px-3 py-1.5 rounded-lg text-xs font-bold border border-red-200">Xóa</button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-50/80 transition">
-                            <td class="p-4">
-                                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" class="w-12 h-12 rounded-xl object-cover border border-slate-200" alt="Cơm cháy chà bông" />
-                            </td>
-                            <td class="p-4 font-black text-slate-900">Cơm Cháy Siêu Chà Bông</td>
-                            <td class="p-4 text-[#E0533C] font-black">35,000 đ</td>
-                            <td class="p-4"><span class="bg-amber-100 text-amber-800 text-xs px-2.5 py-1 rounded-full font-bold">~350 kcal</span></td>
-                            <td class="p-4">
-                                <span class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-1 rounded-full font-bold">Đang Bán</span>
-                            </td>
-                            <td class="p-4 text-center space-x-2">
-                                <button onclick="alert('Chỉnh sửa: Cơm Cháy')" class="bg-slate-100 hover:bg-slate-200 text-slate-800 px-3 py-1.5 rounded-lg text-xs font-bold border">Sửa</button>
-                                <button onclick="if(confirm('Bạn có chắc muốn xóa món này?')) this.closest('tr').remove();" class="bg-red-50 hover:bg-red-100 text-red-600 px-3 py-1.5 rounded-lg text-xs font-bold border border-red-200">Xóa</button>
-                            </td>
-                        </tr>
+                    <tbody id="menu-table-body" class="divide-y divide-slate-100 text-sm font-semibold">
+                        <!-- Dữ liệu render tự động bằng JS -->
                     </tbody>
                 </table>
             </div>
-
         </main>
     </div>
 
     <script>
-        lucide.createIcons();
+        const DEFAULT_PRODUCTS = [
+            { id: 1, title: "Sữa Đậu Nành Tươi", price: "10.000 ₫", calo: 120, img: "https://images.unsplash.com/photo-1528750997573-59b89d56f4f7?auto=format&fit=crop&w=600&q=80", status: "Đang Bán" },
+            { id: 2, title: "Sữa Bắp Tươi", price: "15.000 ₫", calo: 160, img: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80", status: "Đang Bán" },
+            { id: 3, title: "Sữa Đậu Đỏ", price: "15.000 ₫", calo: 140, img: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=600&q=80", status: "Đang Bán" },
+            { id: 4, title: "Cơm Cháy Chà Bông", price: "35.000 ₫", calo: 380, img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80", status: "Đang Bán" },
+            { id: 5, title: "Cơm Cháy Mắm Hành", price: "30.000 ₫", calo: 320, img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80", status: "Đang Bán" },
+            { id: 6, title: "Thạch Lá Nếp & Trân Châu", price: "5.000 ₫", calo: 60, img: "https://images.unsplash.com/photo-1558857563-b371033873b8?auto=format&fit=crop&w=600&q=80", status: "Đang Bán" }
+        ];
+
+        function getProducts() {
+            const data = localStorage.getItem('lymap_products');
+            if (!data) {
+                localStorage.setItem('lymap_products', JSON.stringify(DEFAULT_PRODUCTS));
+                return DEFAULT_PRODUCTS;
+            }
+            return JSON.parse(data);
+        }
+
+        function renderAdminMenu() {
+            const products = getProducts();
+            const tbody = document.getElementById('menu-table-body');
+            tbody.innerHTML = '';
+
+            products.forEach(p => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50/80 transition";
+                tr.innerHTML = `
+                        <td class="p-4">
+                            <img src="${p.img}" class="w-12 h-12 rounded-xl object-cover border border-slate-200" />
+                        </td>
+                        <td class="p-4 font-black text-slate-900">${p.title}</td>
+                        <td class="p-4 text-[#E0533C] font-black">${p.price}</td>
+                        <td class="p-4"><span class="bg-amber-100 text-amber-800 text-xs px-2.5 py-1 rounded-full font-bold">~${p.calo} kcal</span></td>
+                        <td class="p-4">
+                            <span class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-1 rounded-full font-bold">${p.status}</span>
+                        </td>
+                        <td class="p-4 text-center space-x-2">
+                            <a href="/Admin/Edit.html?id=${p.id}" class="bg-slate-100 hover:bg-slate-200 text-slate-800 px-3 py-1.5 rounded-lg text-xs font-bold border inline-block">Sửa</a>
+                            <button onclick="deleteProduct(${p.id})" class="bg-red-50 hover:bg-red-100 text-red-600 px-3 py-1.5 rounded-lg text-xs font-bold border border-red-200">Xóa</button>
+                        </td>
+                    `;
+                tbody.appendChild(tr);
+            });
+            lucide.createIcons();
+        }
+
+        function deleteProduct(id) {
+            if (!confirm('Bạn có chắc chắn muốn xóa món này khỏi menu không?')) return;
+            let products = getProducts();
+            products = products.filter(p => p.id !== id);
+            localStorage.setItem('lymap_products', JSON.stringify(products));
+            renderAdminMenu();
+        }
+
+        function resetDefaultMenu() {
+            if (!confirm('Khôi phục danh sách đầy đủ 6 món ban đầu?')) return;
+            localStorage.setItem('lymap_products', JSON.stringify(DEFAULT_PRODUCTS));
+            renderAdminMenu();
+        }
 
         function logoutAdmin() {
             localStorage.removeItem('admin_logged_in');
-            alert('Đã đăng xuất tài khoản!');
-            window.location.href = '/Admin/Login.html';
+            alert('Đã đăng xuất!');
+            window.location.replace('/Admin/Login.html');
         }
+
+        document.addEventListener('DOMContentLoaded', renderAdminMenu);
     </script>
 </body>
 </html>
