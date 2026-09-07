@@ -5,11 +5,13 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Lý Mập Food - Freshness in Motion</title>
 
+    <!-- GOOGLE FONTS & MATERIAL ICONS -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800;900&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
+    <!-- TAILWIND CSS CDN & CONFIGURATION -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script id="tailwind-config">
@@ -18,186 +20,901 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#0f5238",
-                        "primary-container": "#2d6a4f",
-                        "primary-fixed": "#b1f0ce",
+                        "on-surface": "#1b1b1b",
+                        "on-primary-container": "#a8e7c5",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#6f5c00",
+                        "on-secondary-fixed-variant": "#554600",
                         "secondary": "#705d00",
+                        "outline-variant": "#bfc9c1",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#313030",
+                        "tertiary": "#42493f",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#2d6a4f",
+                        "tertiary-container": "#5a6156",
+                        "outline": "#707973",
                         "secondary-container": "#fdd404",
+                        "tertiary-fixed": "#dee5d6",
+                        "tertiary-fixed-dim": "#c2c9bb",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#0e5138",
+                        "primary-fixed-dim": "#95d4b3",
                         "background": "#fcf9f8",
+                        "error": "#ba1a1a",
+                        "surface": "#fcf9f8",
+                        "on-surface-variant": "#404943",
+                        "surface-tint": "#2c694e",
+                        "surface-dim": "#dcd9d9",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#42493e",
+                        "inverse-primary": "#95d4b3",
+                        "on-tertiary-fixed": "#171d14",
+                        "secondary-fixed": "#ffe171",
                         "surface-container-high": "#eae7e7",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#f3f0ef",
+                        "surface-bright": "#fcf9f8",
+                        "on-secondary-fixed": "#221b00",
+                        "on-background": "#1b1b1b",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-primary-fixed": "#002114",
+                        "surface-variant": "#e5e2e1",
+                        "primary-fixed": "#b1f0ce",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#d5dccd",
+                        "primary": "#0f5238",
+                        "surface-container": "#f0eded",
                         "surface-container-low": "#f6f3f2",
-                        "surface-container-lowest": "#ffffff"
+                        "secondary-fixed-dim": "#e9c400"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-lg": ["Work Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "label-bold": ["Work Sans"],
+                        "body-md": ["Work Sans"],
+                        "label-sm": ["Work Sans"]
+                    },
+                    spacing: {
+                        "container-max": "1280px",
+                        "margin-desktop": "64px",
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px"
                     }
                 }
             }
         }
     </script>
-</head>
-<body class="bg-[#fcf9f8] text-[#1b1b1b] font-['Work_Sans'] overflow-x-hidden">
 
-    <!-- Announcement Bar -->
-    <div class="bg-[#2d6a4f] text-white text-xs sm:text-sm py-2 px-4 text-center font-medium flex items-center justify-center gap-2 fixed top-0 w-full z-50 shadow-sm">
-        <span class="w-2 h-2 rounded-full bg-[#fdd404] animate-ping"></span>
-        <span>TRẠNG THÁI: <span class="bg-[#fdd404] text-black px-2.5 py-0.5 rounded-full text-xs font-bold uppercase">Đang mở cửa</span> • Đợt sữa mới nấu lúc <strong class="text-[#fdd404]">09:30 sáng nay</strong></span>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .blob-shape {
+            clip-path: polygon(42% 1%, 74% 17%, 95% 45%, 85% 79%, 52% 98%, 18% 85%, 2% 51%, 14% 18%);
+            transition: clip-path 4s ease-in-out;
+        }
+
+            .blob-shape:hover {
+                clip-path: polygon(50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%);
+            }
+
+        .animate-blob-1 {
+            animation: moveBlob1 15s infinite alternate ease-in-out;
+        }
+
+        .animate-blob-2 {
+            animation: moveBlob2 20s infinite alternate-reverse ease-in-out;
+        }
+
+        @keyframes moveBlob1 {
+            0% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(40px, 20px) scale(1.08) rotate(12deg);
+            }
+
+            100% {
+                transform: translate(-20px, 40px) scale(0.92) rotate(-8deg);
+            }
+        }
+
+        @keyframes moveBlob2 {
+            0% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(-40px, -30px) scale(1.15) rotate(-15deg);
+            }
+
+            100% {
+                transform: translate(30px, -15px) scale(0.85) rotate(10deg);
+            }
+        }
+
+        .soft-shadow {
+            box-shadow: 0 10px 40px -10px rgba(45, 106, 79, 0.08);
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+            .fade-in-up.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden selection:bg-primary-fixed selection:text-primary">
+
+    <!-- 1. LIVE BATCH ANNOUNCEMENT BAR -->
+    <div class="bg-primary-container text-white text-xs sm:text-sm py-2 px-4 text-center font-medium flex items-center justify-center gap-2 fixed top-0 w-full z-50 shadow-sm">
+        <span id="store-ping" class="w-2 h-2 rounded-full bg-secondary-container animate-ping"></span>
+        <span>TRẠNG THÁI: <span id="store-status-badge" class="bg-secondary-container text-on-surface px-2.5 py-0.5 rounded-full text-xs font-bold uppercase">Đang mở cửa</span> • <span id="batch-time-text">Đợt sữa mới nấu lúc <strong id="live-batch-time" class="text-secondary-container font-bold">09:30 sáng nay</strong></span></span>
     </div>
 
-    <!-- Navbar -->
-    <header class="bg-white/90 backdrop-blur-md fixed top-[36px] w-full z-40 border-b border-slate-200">
-        <nav class="flex justify-between items-center px-6 md:px-16 py-3 w-full max-w-7xl mx-auto h-[72px]">
-            <a class="font-['Plus_Jakarta_Sans'] font-black text-2xl text-[#0f5238] flex items-center gap-2" href="#hero">
-                <div class="w-9 h-9 rounded-2xl bg-[#0f5238] text-white flex items-center justify-center text-lg font-bold shadow-md">LM</div>
-                <span>Lý Mập <span class="text-amber-500">Food</span></span>
+    <!-- 2. NAVBAR -->
+    <header class="bg-background/85 backdrop-blur-md fixed top-[36px] w-full z-40 border-b border-surface-container-high">
+        <nav class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-unit w-full max-w-container-max mx-auto h-[72px]">
+            <a class="font-headline-sm text-headline-sm font-bold text-primary flex items-center gap-2" href="#hero">
+                <div class="w-9 h-9 rounded-2xl bg-primary text-white flex items-center justify-center text-lg font-bold shadow-md shadow-primary/20">LM</div>
+                <span>Lý Mập <span class="text-secondary-container">Food</span></span>
             </a>
 
-            <div class="hidden md:flex gap-8 items-center text-sm font-bold text-slate-700">
-                <a class="hover:text-[#0f5238] transition" href="#hero">Trang Chủ</a>
-                <a class="hover:text-[#0f5238] transition" href="#menu">Thực Đơn</a>
-                <a class="hover:text-[#0f5238] transition" href="#calculator">Tự Mix Calo</a>
-                <a class="hover:text-[#0f5238] transition" href="#contact">Liên Hệ</a>
+            <div class="hidden md:flex gap-gutter items-center font-body-md text-body-md">
+                <a class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:scale-95" href="#hero">Trang Chủ</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:scale-95" href="#story">Câu Chuyện</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:scale-95" href="#highlights">Bảo Chứng</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:scale-95" href="#menu">Thực Đơn</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:scale-95" href="#calculator">Tự Mix Calo</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:scale-95" href="#contact">Liên Hệ</a>
             </div>
 
             <div class="flex items-center gap-3">
-                <a href="/Admin/Login.html" class="text-xs font-bold px-3.5 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 transition flex items-center gap-1">
+                <button onclick="toggleSearchBar()" class="text-primary hover:text-primary-container p-2 rounded-full hover:bg-surface-container-high transition flex items-center justify-center" title="Tìm kiếm món">
+                    <span class="material-symbols-outlined text-2xl">search</span>
+                </button>
+
+                <a href="/Admin/Login.html" class="text-xs font-bold px-3.5 py-2 rounded-full bg-surface-container-high hover:bg-tertiary-fixed text-slate-700 transition flex items-center gap-1">
                     <span class="material-symbols-outlined text-base">admin_panel_settings</span>
-                    <span>Admin</span>
+                    <span class="hidden sm:inline">Admin</span>
                 </a>
 
-                <a href="https://zalo.me/0862299479" target="_blank" class="bg-[#0f5238] text-white text-xs font-bold px-5 py-2.5 rounded-full hover:bg-[#2d6a4f] transition flex items-center gap-1.5 shadow-md">
-                    <span class="material-symbols-outlined text-base text-[#fdd404]">chat</span>
+                <a href="https://zalo.me/0862299479" target="_blank" class="bg-primary text-on-primary font-label-bold text-label-bold px-6 py-3 rounded-full hover:bg-primary-container transition-all hover:scale-105 shadow-[0_4px_14px_0_rgba(45,106,79,0.2)] active:scale-95 flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-base text-secondary-container">chat</span>
                     <span>Đặt Món Zalo</span>
                 </a>
             </div>
         </nav>
+
+        <!-- Dropdown Search Bar -->
+        <div id="search-bar-container" class="hidden bg-white border-b border-surface-container-high px-4 py-3 shadow-md">
+            <div class="max-w-xl mx-auto relative flex items-center">
+                <span class="material-symbols-outlined text-slate-400 absolute left-3">search</span>
+                <input id="nav-search-input" onkeyup="searchMenuItems(this.value)" type="text" placeholder="Tìm kiếm món ăn (Sữa đậu nành, sữa bắp, cơm cháy...)" class="w-full bg-surface-container-low pl-10 pr-10 py-2.5 rounded-full text-xs font-medium border-none focus:ring-2 focus:ring-primary focus:bg-white transition" />
+                <button onclick="toggleSearchBar()" class="absolute right-3 text-slate-400 hover:text-slate-600 text-xs font-bold">✕</button>
+            </div>
+        </div>
     </header>
 
-    <main class="pt-[110px]">
-        <!-- Hero Section -->
-        <section id="hero" class="px-6 md:px-16 max-w-7xl mx-auto py-12 grid md:grid-cols-12 gap-8 items-center">
-            <div class="md:col-span-7 space-y-5">
-                <span class="bg-[#b1f0ce] text-[#0f5238] px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider">100% ĐẬU NÀNH TƯƠI • TỪ 10.000Đ</span>
-                <h1 class="font-['Plus_Jakarta_Sans'] text-4xl md:text-5xl font-black leading-tight text-slate-900">
-                    Sữa Đậu Nành & Sữa Bắp <br /><span class="text-[#0f5238]">Đậm Vị Mới Nấu.</span>
-                </h1>
-                <p class="text-slate-600 text-sm md:text-base max-w-lg leading-relaxed">
-                    Thưởng thức hương vị béo ngậy nguyên bản từ hạt đậu nành chọn lọc và bắp ngọt tươi tại TP. Biên Hòa. Không chất bảo quản, đóng chai mới mỗi ngày.
-                </p>
-                <div class="flex gap-4 pt-2">
-                    <a href="#menu" class="bg-[#0f5238] text-white px-7 py-3.5 rounded-full font-bold text-sm shadow-lg hover:bg-[#2d6a4f] transition">Khám Phá Menu</a>
-                    <a href="https://zalo.me/0862299479" target="_blank" class="border-2 border-[#0f5238] text-[#0f5238] px-7 py-3.5 rounded-full font-bold text-sm hover:bg-emerald-50 transition">Giao Hàng Ngay</a>
-                </div>
+    <main class="pt-[100px]">
+        <!-- 3. HERO SECTION -->
+        <section id="hero" class="relative min-h-[760px] flex items-center overflow-hidden px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+            <div class="absolute inset-0 -z-10 opacity-30 pointer-events-none">
+                <svg class="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] text-primary-fixed animate-blob-1" fill="currentColor" viewbox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M45.7,-76.4C58.9,-69.3,69.1,-55.3,77.5,-40.5C85.9,-25.7,92.5,-10.1,89.5,4.1C86.5,18.3,73.9,31,61.8,41.9C49.7,52.8,38.1,61.9,24.4,69.5C10.7,77.1,-5,83.2,-20.3,81.1C-35.6,79,-50.5,68.7,-61.8,55.4C-73.1,42.1,-80.8,25.8,-82.9,9.1C-85,-7.6,-81.5,-24.7,-72.1,-38.3C-62.7,-51.9,-47.4,-62,-33.1,-68.8C-18.8,-75.6,-5.5,-79.1,9.3,-79.7C24.1,-80.3,42.4,-77.9,45.7,-76.4Z" transform="translate(100 100)"></path>
+                </svg>
+                <svg class="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] text-secondary-fixed animate-blob-2" fill="currentColor" viewbox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M39.9,-65.4C52.7,-58.5,64.8,-49.2,74,-36.8C83.2,-24.4,89.5,-8.9,86.6,4.8C83.7,18.5,71.6,30.4,60.4,41.2C49.2,52,38.9,61.7,26.4,68.4C13.9,75.1,-0.8,78.8,-15.5,77.4C-30.2,76,-44.9,69.5,-57.4,59.8C-69.9,50.1,-80.2,37.2,-84.9,22.3C-89.6,7.4,-88.7,-9.5,-81.3,-23.4C-73.9,-37.3,-60.1,-48.2,-46.6,-54.9C-33.1,-61.6,-19.9,-64.1,-3.9,-58.5C12.1,-52.9,27.1,-72.3,39.9,-65.4Z" transform="translate(100 100)"></path>
+                </svg>
             </div>
 
-            <div class="md:col-span-5">
-                <img class="w-full h-96 object-cover rounded-3xl shadow-xl" src="https://images.unsplash.com/photo-1528750997573-59b89d56f4f7?auto=format&fit=crop&w=700&q=80" alt="Sữa đậu nành" />
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center w-full z-10 py-10">
+                <div class="md:col-span-7 space-y-6 fade-in-up">
+                    <span class="inline-block bg-primary-fixed text-on-primary-fixed-variant px-4 py-1.5 rounded-full font-label-sm text-label-sm uppercase tracking-wider">
+                        100% ĐẬU NÀNH TƯƠI • GIÁ TỪ 10.000Đ
+                    </span>
+                    <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface leading-[1.15]">
+                        Sữa Đậu Nành & Sữa Bắp <br /><span class="text-primary">Đậm Vị Mới Nấu.</span>
+                    </h1>
+                    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+                        Thưởng thức hương vị béo ngậy nguyên bản từ hạt đậu nành chọn lọc và bắp ngọt tươi tại hệ thống xe đẩy & cửa hàng Biên Hòa. Không chất bảo quản, đóng chai tươi mới mỗi ngày.
+                    </p>
+
+                    <div class="bg-surface-container-lowest p-4 rounded-2xl border border-tertiary-fixed-dim soft-shadow flex items-center gap-3 text-xs text-on-surface-variant max-w-lg">
+                        <span class="material-symbols-outlined text-primary text-2xl shrink-0">local_shipping</span>
+                        <div>
+                            <strong class="text-on-surface block font-bold">Cam Kết Giữ Trọn Độ Giòn & Nóng:</strong>
+                            <span>Trong bán kính <strong>≤ 5km Biên Hòa</strong>, cơm cháy giữ nguyên độ giòn 100% & sữa tươi ấm nóng!</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4 pt-2">
+                        <a href="#menu" class="bg-primary text-on-primary font-label-bold text-label-bold px-8 py-4 rounded-full hover:bg-primary-container transition-all hover:scale-105 shadow-[0_8px_24px_0_rgba(45,106,79,0.15)] active:scale-95">
+                            Khám Phá Thực Đơn
+                        </a>
+                        <a href="#story" class="flex items-center gap-2 text-primary font-label-bold text-label-bold hover:text-surface-tint transition-colors">
+                            <span class="material-symbols-outlined rounded-full border border-primary p-2">play_arrow</span>
+                            <span>Câu Chuyện Của Quán</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="md:col-span-5 relative h-[380px] md:h-[500px] w-full fade-in-up" style="transition-delay: 0.2s;">
+                    <div class="absolute inset-0 bg-secondary-fixed-dim/20 blob-shape animate-blob-2 blur-2xl"></div>
+                    <img class="w-full h-full object-cover blob-shape shadow-lg" src="https://images.unsplash.com/photo-1528750997573-59b89d56f4f7?auto=format&fit=crop&w=700&q=80" alt="Sữa đậu nành tươi Lý Mập Food" />
+                </div>
             </div>
         </section>
 
-        <!-- Menu Section -->
-        <section id="menu" class="px-6 md:px-16 max-w-7xl mx-auto py-16">
-            <div class="text-center max-w-2xl mx-auto mb-10">
-                <span class="bg-[#b1f0ce] text-[#0f5238] px-4 py-1 rounded-full text-xs font-black uppercase tracking-wider">Thực Đơn Tươi Mới</span>
-                <h2 class="font-['Plus_Jakarta_Sans'] text-3xl font-black text-[#0f5238] mt-2">DANH MỤC MÓN NGON</h2>
-                <p class="text-xs text-slate-500 mt-1">Đồng bộ trực tiếp giá và khuyến mãi từ hệ thống quản trị</p>
-            </div>
+        <!-- 4. CÂU CHUYỆN THƯƠNG HIỆU -->
+        <section id="story" class="py-20 px-margin-mobile md:px-margin-desktop bg-surface-container-lowest border-y border-surface-container-high">
+            <div class="max-w-container-max mx-auto grid md:grid-cols-12 gap-12 items-center">
+                <div class="md:col-span-5 relative rounded-[32px] overflow-hidden soft-shadow aspect-square bg-tertiary-fixed">
+                    <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80" alt="Không gian chế biến Lý Mập Food" class="w-full h-full object-cover" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-6">
+                        <span class="text-white text-xs font-bold bg-primary/90 backdrop-blur px-3 py-1.5 rounded-full">Nấu Thủ Công Từ Tâm</span>
+                    </div>
+                </div>
 
-            <!-- Grid Sản Phẩm Render Tự Động -->
-            <div id="product-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+                <div class="md:col-span-7 space-y-4">
+                    <span class="inline-block bg-primary-fixed text-on-primary-fixed-variant px-4 py-1 rounded-full font-label-sm text-label-sm uppercase tracking-wider">
+                        Câu Chuyện Của Chúng Tôi
+                    </span>
+                    <h2 class="font-headline-md text-headline-md text-primary">Khởi Nguồn Từ Tình Yêu Vị Sữa Hạt Mộc Mạc</h2>
+                    <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        Lý Mập Food bắt đầu từ xe đẩy sữa hạt nhỏ tại khu vực Chợ Biên Hòa với mong muốn: mang lại những ly sữa đậu nành, sữa bắp nấu thủ công nguyên chất, không chất bảo quản, an toàn cho mọi gia đình.
+                    </p>
+                    <div class="grid sm:grid-cols-2 gap-4 pt-2">
+                        <div class="p-5 rounded-2xl bg-surface-container-low border border-tertiary-fixed-dim">
+                            <h4 class="font-headline-sm text-headline-sm text-primary text-base mb-1">Tươi Mới 100%</h4>
+                            <p class="font-body-md text-body-md text-xs text-on-surface-variant">Đậu ngâm đúng giờ, nấu theo từng mẻ nhỏ liên tục trong ngày để giữ trọn vị thơm béo.</p>
+                        </div>
+                        <div class="p-5 rounded-2xl bg-surface-container-low border border-tertiary-fixed-dim">
+                            <h4 class="font-headline-sm text-headline-sm text-primary text-base mb-1">Thân Thiện & Bình Dân</h4>
+                            <p class="font-body-md text-body-md text-xs text-on-surface-variant">Mức giá bình dân chỉ từ 10.000đ, phục vụ nhanh chóng và nhiệt tình mỗi ngày.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- Modal Xem Chi Tiết -->
-        <div id="product-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-            <div class="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 border border-slate-200 shadow-2xl relative">
-                <button onclick="closeDetail()" class="absolute top-4 right-4 text-slate-400 hover:text-black font-bold text-lg">✕</button>
-                <img id="modal-img" class="w-full h-48 object-cover rounded-2xl" src="" alt="" />
-                <div>
-                    <h3 id="modal-title" class="text-xl font-black text-slate-900"></h3>
-                    <div id="modal-price" class="text-lg font-black text-[#0f5238] mt-1"></div>
-                    <p id="modal-desc" class="text-xs text-slate-500 mt-2 leading-relaxed"></p>
+        <!-- 5. BENTO GRID BẢO CHỨNG LÒNG TIN -->
+        <section id="highlights" class="py-20 px-margin-mobile md:px-margin-desktop bg-surface-container-low">
+            <div class="max-w-container-max mx-auto">
+                <h2 class="font-headline-md text-headline-md text-on-surface mb-12 text-center fade-in-up">Lời Hứa Người Bạn Khỏe Mạnh</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]">
+                    <div class="bg-primary-container rounded-[2rem] p-8 flex flex-col justify-end relative overflow-hidden md:col-span-2 hover:shadow-lg transition-shadow duration-300 group fade-in-up">
+                        <div class="absolute inset-0 bg-cover bg-center opacity-40 group-hover:opacity-60 transition-opacity duration-500" style="background-image: url('https://images.unsplash.com/photo-1592417817098-8f3d6910985b?auto=format&fit=crop&w=800&q=80')"></div>
+                        <div class="relative z-10">
+                            <span class="material-symbols-outlined text-on-primary-container text-4xl mb-2">eco</span>
+                            <h3 class="font-headline-sm text-headline-sm text-on-primary">Từ Nông Trại Đến Chai Sữa</h3>
+                            <p class="font-body-md text-body-md text-on-primary-container max-w-sm mt-2">100% đậu nành hữu cơ tuyển chọn và bắp ngọt bẻ tại vườn Biên Hòa, giữ trọn vẹn dinh dưỡng tự nhiên.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-secondary-container rounded-[2rem] p-8 flex flex-col justify-center items-center text-center hover:scale-[1.02] transition-transform duration-300 fade-in-up" style="transition-delay: 0.1s;">
+                        <span class="material-symbols-outlined text-on-secondary-container text-5xl mb-4">bolt</span>
+                        <h3 class="font-headline-sm text-headline-sm text-on-secondary-container">Năng Lượng Thuần Khiết</h3>
+                        <p class="font-body-md text-body-md text-on-secondary-container mt-2">Năng lượng từ thực vật giúp bạn hoạt động suốt cả ngày dài mà không lo mệt mỏi.</p>
+                    </div>
+
+                    <div class="bg-surface-container-highest rounded-[2rem] p-8 flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300 fade-in-up" style="transition-delay: 0.2s;">
+                        <span class="material-symbols-outlined text-primary text-4xl">favorite</span>
+                        <div>
+                            <h3 class="font-headline-sm text-headline-sm text-on-surface">Không Chất Phụ Gia</h3>
+                            <p class="font-body-md text-body-md text-on-surface-variant mt-2">Không chất bảo quản, không hương liệu nhân tạo. Nấu mới và dùng hết trong ngày.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-surface-container-lowest border-2 border-tertiary-fixed rounded-[2rem] p-8 md:col-span-2 flex items-center gap-6 hover:border-primary-fixed-dim transition-colors duration-300 fade-in-up" style="transition-delay: 0.3s;">
+                        <div class="w-24 h-24 rounded-full overflow-hidden shrink-0 shadow-md">
+                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80" alt="Khách hàng Lý Mập Food" />
+                        </div>
+                        <div>
+                            <h3 class="font-headline-sm text-headline-sm text-on-surface">Hơn 20.000+ Khách Hàng Tin Chọn</h3>
+                            <p class="font-body-md text-body-md text-on-surface-variant mt-2">Hệ thống xe đẩy và cửa hàng phục vụ từ 06:00 đến 21:30 mỗi ngày với điểm đánh giá uy tín 4.9/5★.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="pt-2">
-                    <a id="modal-zalo-link" href="#" target="_blank" class="block w-full bg-[#0f5238] text-white text-center py-3 rounded-xl font-bold text-xs hover:bg-[#2d6a4f] transition">
-                        ĐẶT MÓN NÀY QUA ZALO
-                    </a>
+            </div>
+        </section>
+
+        <!-- 6. GALLERY BỘ SƯU TẬP HÌNH ẢNH THỰC TẾ -->
+        <section id="gallery" class="py-16 px-margin-mobile md:px-margin-desktop bg-surface">
+            <div class="max-w-container-max mx-auto space-y-10">
+                <div class="text-center max-w-2xl mx-auto">
+                    <span class="inline-block bg-primary-fixed text-on-primary-fixed-variant px-4 py-1 rounded-full font-label-sm text-label-sm uppercase tracking-wider">Bộ Sưu Tập Hình Ảnh</span>
+                    <h2 class="font-headline-md text-headline-md text-primary mt-2">HƯƠNG VỊ VÀ NGUYÊN LIỆU THỰC TẾ</h2>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="rounded-2xl overflow-hidden soft-shadow aspect-square group bg-slate-50">
+                        <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80" alt="Sữa bắp tươi" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                    </div>
+                    <div class="rounded-2xl overflow-hidden soft-shadow aspect-square group bg-slate-50">
+                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="Cơm cháy giòn" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                    </div>
+                    <div class="rounded-2xl overflow-hidden soft-shadow aspect-square group bg-slate-50">
+                        <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=600&q=80" alt="Sữa đậu đỏ" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                    </div>
+                    <div class="rounded-2xl overflow-hidden soft-shadow aspect-square group bg-slate-50">
+                        <img src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=600&q=80" alt="Đậu nành hữu cơ" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. THỰC ĐƠN SẢN PHẨM -->
+        <section id="menu" class="py-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="inline-block bg-primary-fixed text-on-primary-fixed-variant px-4 py-1 rounded-full font-label-sm text-label-sm uppercase tracking-wider">Thực Đơn Bình Dân</span>
+                <h2 class="font-headline-md text-headline-md text-primary mt-2">DANH MỤC MÓN NGON</h2>
+                <p class="font-body-md text-body-md text-on-surface-variant mt-2">Bấm vào từng món để xem thông tin dinh dưỡng và cách bảo quản!</p>
+            </div>
+
+            <!-- Tab Lọc Món -->
+            <div class="flex flex-wrap justify-center gap-3 mb-10">
+                <button onclick="filterMenu('all', this)" class="filter-btn bg-primary text-on-primary font-label-bold text-label-bold px-6 py-2.5 rounded-full whitespace-nowrap active:scale-95 shadow-sm transition">Tất Cả</button>
+                <button onclick="filterMenu('sua', this)" class="filter-btn bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed font-label-bold text-label-bold px-6 py-2.5 rounded-full whitespace-nowrap active:scale-95 transition">Sữa Tươi</button>
+                <button onclick="filterMenu('comchay', this)" class="filter-btn bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed font-label-bold text-label-bold px-6 py-2.5 rounded-full whitespace-nowrap active:scale-95 transition">Cơm Cháy</button>
+                <button onclick="filterMenu('topping', this)" class="filter-btn bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed font-label-bold text-label-bold px-6 py-2.5 rounded-full whitespace-nowrap active:scale-95 transition">Topping</button>
+            </div>
+
+            <!-- Grid Sản Phẩm Render Động Tương Thích Khuyến Mãi -->
+            <div id="product-grid" class="grid grid-cols-1 md:grid-cols-3 gap-gutter"></div>
+        </section>
+
+        <!-- 8. MODAL CHI TIẾT SẢN PHẨM -->
+        <div id="product-modal" class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 hidden overflow-y-auto">
+            <div class="bg-white rounded-[2rem] max-w-3xl w-full p-0 shadow-2xl relative border border-slate-100 animate-fade-in-up my-auto overflow-hidden flex flex-col md:flex-row">
+
+                <button onclick="closeDetail()" class="absolute top-4 right-4 bg-slate-100/90 text-slate-700 w-8 h-8 rounded-full flex items-center justify-center font-bold hover:bg-slate-200 transition z-50 shadow-sm" title="Đóng">
+                    ✕
+                </button>
+
+                <div class="md:w-5/12 relative h-64 md:h-auto bg-slate-50">
+                    <img id="modal-img" src="" class="w-full h-full object-cover" alt="Chi tiết món" />
+                    <span class="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-sm uppercase tracking-wider">Tươi Mới Mỗi Ngày</span>
+                </div>
+
+                <div class="md:w-7/12 p-6 sm:p-8 flex flex-col bg-white">
+                    <div class="pr-10 mb-2">
+                        <h3 id="modal-title" class="font-headline font-extrabold text-2xl text-slate-900 leading-tight">Tên món ăn</h3>
+                    </div>
+
+                    <div class="flex items-center gap-3 mb-3">
+                        <div id="modal-price" class="font-headline font-black text-xl text-primary">0đ</div>
+                        <div class="bg-[#B1F0CE] text-[#0F5238] text-[11px] font-black px-2.5 py-1 rounded-full flex items-center gap-1 shrink-0">
+                            <span class="material-symbols-outlined text-[13px]">health_and_safety</span>
+                            <span>Healthy: <strong id="modal-health-score">9.6</strong>/10</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-3 text-[11px] text-slate-500 font-medium mb-6 pb-6 border-b border-slate-100">
+                        <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> <span id="modal-batch">09:30 AM</span></span>
+                        <span>•</span>
+                        <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">local_fire_department</span> <span id="modal-sold">4.500+</span> Đã bán</span>
+                    </div>
+
+                    <div class="grid grid-cols-4 gap-2 text-center mb-6">
+                        <div>
+                            <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1">Calo</div>
+                            <div class="font-headline font-bold text-sm text-slate-900"><span id="modal-calo-val">120</span></div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1">Protein</div>
+                            <div id="modal-protein-val" class="font-headline font-bold text-sm text-slate-900">6.8g</div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1">Carbs</div>
+                            <div id="modal-carbs-val" class="font-headline font-bold text-sm text-slate-900">12.5g</div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1">Fat</div>
+                            <div id="modal-fat-val" class="font-headline font-bold text-sm text-slate-900">3.2g</div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 mb-6 pb-6 border-b border-slate-100">
+                        <div class="flex justify-between items-center text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">
+                            <span>% Nhu cầu hằng ngày (2000 kcal)</span>
+                        </div>
+
+                        <div class="relative pt-1">
+                            <div class="flex items-center justify-between text-[11px] font-medium text-slate-600 mb-1">
+                                <span>Đạm thực vật</span>
+                                <span id="bar-protein-text" class="text-primary font-bold">35%</span>
+                            </div>
+                            <div class="overflow-hidden h-1.5 text-xs flex rounded-full bg-slate-100">
+                                <div id="bar-protein" style="width: 35%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-primary transition-all duration-1000"></div>
+                            </div>
+                        </div>
+
+                        <div class="relative pt-1">
+                            <div class="flex items-center justify-between text-[11px] font-medium text-slate-600 mb-1">
+                                <span>Tinh bột & Chất xơ</span>
+                                <span id="bar-carbs-text" class="text-amber-500 font-bold">12%</span>
+                            </div>
+                            <div class="overflow-hidden h-1.5 text-xs flex rounded-full bg-slate-100">
+                                <div id="bar-carbs" style="width: 12%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-amber-400 transition-all duration-1000"></div>
+                            </div>
+                        </div>
+
+                        <div class="relative pt-1">
+                            <div class="flex items-center justify-between text-[11px] font-medium text-slate-600 mb-1">
+                                <span>Chất béo tốt</span>
+                                <span id="bar-fat-text" class="text-emerald-500 font-bold">14%</span>
+                            </div>
+                            <div class="overflow-hidden h-1.5 text-xs flex rounded-full bg-slate-100">
+                                <div id="bar-fat" style="width: 14%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-emerald-400 transition-all duration-1000"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 text-xs text-slate-600 mb-8">
+                        <p class="flex items-start gap-2">
+                            <span class="text-primary mt-0.5">🌿</span>
+                            <span><strong class="text-slate-900 font-semibold">Nguyên Liệu:</strong> <span id="modal-ingredients"></span></span>
+                        </p>
+                        <p class="flex items-start gap-2">
+                            <span class="text-primary mt-0.5">💚</span>
+                            <span><strong class="text-slate-900 font-semibold">Tác Dụng:</strong> <span id="modal-benefits"></span></span>
+                        </p>
+                        <p class="flex items-start gap-2">
+                            <span class="text-primary mt-0.5">📦</span>
+                            <span><strong class="text-slate-900 font-semibold">Bảo Quản:</strong> Ngon nhất trong ngày, bảo quản mát 2-4°C (tối đa 48h). Giao nhanh ≤ 5km giữ nguyên độ ngon.</span>
+                        </p>
+                    </div>
+
+                    <div class="mt-auto">
+                        <a id="modal-zalo-link" href="https://zalo.me/0862299479" target="_blank" class="w-full bg-primary hover:bg-primary-container text-white font-bold py-3.5 rounded-full shadow-lg shadow-primary/20 text-center text-[13px] flex items-center justify-center gap-2 transition hover:-translate-y-0.5">
+                            <span class="material-symbols-outlined text-sm text-secondary-container">send</span>
+                            <span>ĐẶT MÓN QUA ZALO</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Calculator Section -->
-        <section id="calculator" class="bg-slate-100 py-16 px-6 md:px-16">
-            <div class="max-w-4xl mx-auto bg-white p-8 rounded-3xl border border-slate-200 shadow-sm text-center space-y-4">
-                <h3 class="font-['Plus_Jakarta_Sans'] text-2xl font-black text-[#0f5238]">TỰ MIX CALO & ĐẶT ZALO NHANH</h3>
-                <p class="text-xs text-slate-500">Đặt hàng ngay với công thức tùy chọn độ ngọt theo nhu cầu</p>
-                <div class="pt-2">
-                    <a href="https://zalo.me/0862299479" target="_blank" class="inline-block bg-[#0f5238] text-white px-8 py-3.5 rounded-full font-bold text-xs shadow-md hover:bg-[#2d6a4f] transition">
-                        GỬI TIN NHẮN TƯ VẤN QUA ZALO (0862299479)
-                    </a>
+        <!-- 9. CÔNG CỤ TỰ MIX LY SỮA & TÍNH CALO -->
+        <section id="calculator" class="py-20 px-margin-mobile md:px-margin-desktop bg-surface-container-low border-t border-surface-container-high">
+            <div class="max-w-container-max mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="inline-block bg-primary-fixed text-on-primary-fixed-variant px-4 py-1 rounded-full font-label-sm text-label-sm uppercase tracking-wider">Công Cụ Tương Tác</span>
+                    <h2 class="font-headline-md text-headline-md text-primary mt-2">TỰ MIX LY SỮA & TÍNH CALO</h2>
+                    <p class="font-body-md text-body-md text-on-surface-variant mt-2">Tự chọn vị sữa, mức đường (0%, 50%, 100%) và topping theo ý thích!</p>
+                </div>
+
+                <div class="grid lg:grid-cols-12 gap-gutter items-start">
+                    <div class="lg:col-span-7 bg-surface-container-lowest p-6 sm:p-8 rounded-[32px] soft-shadow border border-tertiary-fixed-dim space-y-6">
+                        <div>
+                            <label class="text-xs font-bold text-on-surface block mb-3 flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-primary text-base">local_cafe</span>
+                                <span>1. Chọn Nền Sữa Tươi:</span>
+                            </label>
+                            <div class="grid grid-cols-3 gap-3">
+                                <button onclick="selectBase('Sữa Đậu Nành', 120, this)" class="base-btn active-btn py-3 px-2 text-xs font-bold rounded-2xl bg-primary text-on-primary shadow-sm transition">
+                                    Sữa Đậu Nành <br><span class="text-[10px] opacity-80">(120 kcal)</span>
+                                </button>
+                                <button onclick="selectBase('Sữa Bắp Tươi', 160, this)" class="base-btn py-3 px-2 text-xs font-bold rounded-2xl bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed transition">
+                                    Sữa Bắp Tươi <br><span class="text-[10px] opacity-70">(160 kcal)</span>
+                                </button>
+                                <button onclick="selectBase('Sữa Đậu Đỏ', 140, this)" class="base-btn py-3 px-2 text-xs font-bold rounded-2xl bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed transition">
+                                    Sữa Đậu Đỏ <br><span class="text-[10px] opacity-70">(140 kcal)</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="text-xs font-bold text-on-surface block mb-3 flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-secondary text-base">percent</span>
+                                <span>2. Chọn Mức Đường / EatClean:</span>
+                            </label>
+                            <div class="grid grid-cols-3 gap-3">
+                                <button onclick="selectSugar('100% Chuẩn vị', this)" class="sugar-btn active-btn py-2.5 text-xs font-bold rounded-2xl bg-secondary-container text-on-secondary-container shadow-sm transition">
+                                    100% Chuẩn Vị
+                                </button>
+                                <button onclick="selectSugar('50% Ngọt nhẹ', this)" class="sugar-btn py-2.5 text-xs font-bold rounded-2xl bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed transition">
+                                    50% Ít Ngọt
+                                </button>
+                                <button onclick="selectSugar('0% Không đường', this)" class="sugar-btn py-2.5 text-xs font-bold rounded-2xl bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed transition">
+                                    0% Không Đường
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="text-xs font-bold text-on-surface block mb-3 flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-primary text-base">add_circle</span>
+                                <span>3. Thêm Topping:</span>
+                            </label>
+                            <div class="grid grid-cols-3 gap-3">
+                                <button onclick="toggleTopping('Trân châu đen', 70, this)" class="topping-btn py-2.5 text-xs font-bold rounded-2xl bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed transition">
+                                    + Trân Châu <br><span class="text-[10px] opacity-70">(70 kcal)</span>
+                                </button>
+                                <button onclick="toggleTopping('Thạch lá nếp', 30, this)" class="topping-btn py-2.5 text-xs font-bold rounded-2xl bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed transition">
+                                    + Thạch Lá Nếp <br><span class="text-[10px] opacity-70">(30 kcal)</span>
+                                </button>
+                                <button onclick="toggleTopping('Sương sáo', 20, this)" class="topping-btn py-2.5 text-xs font-bold rounded-2xl bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed transition">
+                                    + Sương Sáo <br><span class="text-[10px] opacity-70">(20 kcal)</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 bg-surface-container-lowest p-6 sm:p-8 rounded-[32px] soft-shadow border border-tertiary-fixed-dim space-y-6">
+                        <div class="flex items-center justify-between border-b border-surface-container-high pb-4">
+                            <h3 class="font-headline-sm text-headline-sm text-primary">LY SỮA BẠN CHỌN</h3>
+                            <span class="inline-block bg-primary-fixed text-on-primary-fixed-variant px-3 py-1 rounded-full font-label-sm text-label-sm uppercase">
+                                Healthy
+                            </span>
+                        </div>
+
+                        <div class="space-y-3 font-body-md text-body-md text-xs text-on-surface-variant">
+                            <div class="flex justify-between items-center">
+                                <span>Nền sữa:</span>
+                                <span id="summary-base" class="font-bold text-on-surface">Sữa Đậu Nành</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span>Mức đường:</span>
+                                <span id="summary-sugar" class="font-bold text-primary">100% Chuẩn vị</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span>Topping:</span>
+                                <span id="summary-toppings" class="font-bold text-primary">Chưa chọn</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-surface-container-low p-5 rounded-2xl flex items-center justify-between">
+                            <div>
+                                <div class="text-[11px] text-slate-500 font-bold uppercase">Tổng Calo Ước Tính</div>
+                                <div class="font-headline-sm text-headline-sm text-primary mt-0.5"><span id="total-calo">120</span> <span class="font-body-md text-xs font-normal text-slate-500">kcal</span></div>
+                            </div>
+                            <div class="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center">
+                                <span class="material-symbols-outlined text-2xl">local_fire_department</span>
+                            </div>
+                        </div>
+
+                        <a id="btn-zalo-order" href="https://zalo.me/0862299479" target="_blank" class="w-full bg-primary text-on-primary font-label-bold text-label-bold py-4 rounded-full shadow-[0_8px_24px_0_rgba(45,106,79,0.2)] transition flex items-center justify-center gap-2 text-xs hover:bg-primary-container active:scale-95">
+                            <span class="material-symbols-outlined text-sm text-secondary-container">chat</span>
+                            <span>GỬI CÔNG THỨC ĐẶT QUA ZALO</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="px-6 md:px-16 max-w-7xl mx-auto py-16 text-center space-y-2">
-            <h3 class="font-['Plus_Jakarta_Sans'] text-xl font-black text-slate-900">HỆ THỐNG LÝ MẬP FOOD</h3>
-            <p class="text-xs text-slate-600 font-semibold">Chợ Biên Hòa & Trảng Dài / Đồng Khởi, TP. Biên Hòa • Hotline: 0862299479</p>
+        <!-- 10. LIÊN HỆ & FORM ĐÁNH GIÁ GÓP Ý -->
+        <section id="contact" class="py-20 px-margin-mobile md:px-margin-desktop bg-surface-container-lowest border-t border-surface-container-high">
+            <div class="max-w-container-max mx-auto grid lg:grid-cols-2 gap-12 items-start">
+                <div class="space-y-6">
+                    <div>
+                        <span class="inline-block bg-primary-fixed text-on-primary-fixed-variant px-4 py-1 rounded-full font-label-sm text-label-sm uppercase tracking-wider">Địa Chỉ & Hotline</span>
+                        <h2 class="font-headline-md text-headline-md text-primary mt-2">HỆ THỐNG LÝ MẬP FOOD</h2>
+                    </div>
+
+                    <div class="space-y-4 text-sm text-on-surface-variant font-medium">
+                        <div class="flex items-start gap-3 bg-surface-container-low p-4 rounded-2xl border border-tertiary-fixed-dim">
+                            <span class="material-symbols-outlined text-primary text-xl mt-0.5">location_on</span>
+                            <div>
+                                <strong class="text-on-surface block font-bold">Khu vực phục vụ:</strong>
+                                <span>Điểm bán xe đẩy Chợ Biên Hòa & Cửa hàng Trảng Dài / Đồng Khởi, TP. Biên Hòa</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 bg-surface-container-low p-4 rounded-2xl border border-tertiary-fixed-dim">
+                            <span class="material-symbols-outlined text-primary text-xl mt-0.5">schedule</span>
+                            <div>
+                                <strong class="text-on-surface block font-bold">Thời gian mở bán:</strong>
+                                <span>06:00 - 21:30 (Mở bán mỗi ngày)</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 bg-surface-container-low p-4 rounded-2xl border border-tertiary-fixed-dim">
+                            <span class="material-symbols-outlined text-primary text-xl mt-0.5">call</span>
+                            <div>
+                                <strong class="text-on-surface block font-bold">Hotline / Zalo Đặt Hàng:</strong>
+                                <span>0862299479 (Giao hàng tận nơi)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <a href="https://facebook.com/lymapfood.dongkhoi" target="_blank" class="bg-[#1877F2] hover:bg-[#166fe5] text-white font-bold text-xs px-6 py-3.5 rounded-full shadow-sm transition inline-flex items-center gap-2">
+                            <i data-lucide="facebook" class="w-4 h-4"></i>
+                            <span>Ghé Thăm Fanpage Facebook</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Form Đánh Giá & Góp Ý -->
+                <div class="bg-surface-container-low p-6 sm:p-8 rounded-[32px] space-y-4 border border-tertiary-fixed-dim">
+                    <h3 class="font-headline-sm text-headline-sm text-primary">GỬI GÓP Ý & ĐÁNH GIÁ CHẤT LƯỢNG</h3>
+                    <p class="font-body-md text-body-md text-xs text-on-surface-variant">Ý kiến của bạn giúp Lý Mập Food hoàn thiện chất lượng và dịch vụ tốt hơn mỗi ngày!</p>
+
+                    <div class="space-y-3 pt-2">
+                        <input type="text" placeholder="Họ và tên của bạn" class="w-full bg-surface-container-lowest p-3.5 rounded-xl border border-tertiary-fixed-dim text-xs font-semibold focus:outline-none focus:border-primary" />
+                        <select class="w-full bg-surface-container-lowest p-3.5 rounded-xl border border-tertiary-fixed-dim text-xs font-semibold focus:outline-none focus:border-primary">
+                            <option>★★★★★ (5/5 - Sữa thơm béo, cơm cháy giòn ngon)</option>
+                            <option>★★★★☆ (4/5 - Hài lòng dịch vụ)</option>
+                            <option>★★★☆☆ (3/5 - Cần cải thiện thêm)</option>
+                        </select>
+                        <textarea rows="3" placeholder="Nhập cảm nhận hoặc góp ý cho cửa hàng..." class="w-full bg-surface-container-lowest p-3.5 rounded-xl border border-tertiary-fixed-dim text-xs font-semibold focus:outline-none focus:border-primary"></textarea>
+                        <button type="button" onclick="alert('Cảm ơn bạn đã gửi đánh giá quý báu cho Lý Mập Food!')" class="w-full bg-primary hover:bg-primary-container text-on-primary font-label-bold text-label-bold py-3.5 rounded-full shadow-sm text-xs transition">GỬI PHẢN HỒI</button>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
-    <footer class="bg-slate-900 text-white text-center py-6 text-xs text-slate-400">
-        © 2026 Lý Mập Food. Freshness in Motion.
+    <!-- 11. FOOTER -->
+    <footer class="bg-surface-container dark:bg-surface-container-highest w-full py-12 border-t border-surface-variant/50">
+        <div class="flex flex-col md:flex-row justify-between items-start px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto gap-gutter">
+            <div class="space-y-4 max-w-xs">
+                <a class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed-dim" href="#hero">
+                    Lý Mập Food
+                </a>
+                <p class="font-body-md text-body-md text-on-surface-variant">
+                    Hệ thống sữa hạt truyền thống và cơm cháy sạch tại Biên Hòa. Mang nguồn dinh dưỡng thuần thực vật đến mỗi gia đình.
+                </p>
+                <p class="font-body-md text-body-md text-on-surface-variant mt-4 font-medium">
+                    © 2026 Lý Mập Food. Freshness in Motion.
+                </p>
+            </div>
+            <div class="grid grid-cols-2 gap-12 font-body-md text-body-md">
+                <div class="space-y-3">
+                    <h4 class="font-label-bold text-label-bold text-on-surface uppercase tracking-wider mb-4">Về Chúng Tôi</h4>
+                    <a class="block text-on-surface-variant hover:text-primary transition" href="#story">Câu Chuyện</a>
+                    <a class="block text-on-surface-variant hover:text-primary transition" href="#highlights">Bảo Chứng</a>
+                    <a class="block text-on-surface-variant hover:text-primary transition" href="#menu">Thực Đơn</a>
+                    <a class="block text-on-surface-variant hover:text-primary transition" href="#calculator">Tính Calo</a>
+                </div>
+                <div class="space-y-3">
+                    <h4 class="font-label-bold text-label-bold text-on-surface uppercase tracking-wider mb-4">Thông Tin</h4>
+                    <a class="block text-on-surface-variant hover:text-primary transition" href="#contact">Địa Chỉ & Hotline</a>
+                    <a class="block text-on-surface-variant hover:text-primary transition" href="#hero">Bán Kính Giao Hàng</a>
+                    <a class="block text-on-surface-variant hover:text-primary transition" href="/Admin/Login.html">Quản Trị Viên</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
-    <!-- SCRIPT CHẠY ĐỘNG -->
+    <!-- SCRIPT ĐIỀU KHIỂN & ĐỒNG BỘ DỮ LIỆU -->
     <script>
         lucide.createIcons();
 
         const ZALO_PHONE = "0862299479";
 
-        const DEFAULT_PRODUCTS = [
-            { id: 1, title: "Sữa Đậu Nành Tươi", price: 10000, calo: 120, img: "https://images.unsplash.com/photo-1528750997573-59b89d56f4f7?auto=format&fit=crop&w=600&q=80", desc: "Vị béo thơm nguyên chất từ hạt đậu nành tươi mới nấu.", status: "Đang Bán", isOnSale: true, discountPercent: 20, saleNote: "GIẢM 20%" },
-            { id: 2, title: "Sữa Bắp Tươi", price: 15000, calo: 160, img: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80", desc: "Thơm lừng mùi bắp ngọt non bẻ tại vườn Biên Hòa.", status: "Đang Bán", isOnSale: false, discountPercent: 0, saleNote: "" },
-            { id: 3, title: "Sữa Đậu Đỏ", price: 15000, calo: 140, img: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=600&q=80", desc: "Bổ máu, thanh nhiệt cơ thể hiệu quả trong mùa nắng.", status: "Đang Bán", isOnSale: false, discountPercent: 0, saleNote: "" },
-            { id: 4, title: "Cơm Cháy Chà Bông", price: 35000, calo: 380, img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80", desc: "Sấy giòn rụm đẫm chà bông thịt heo hảo hạng.", status: "Đang Bán", isOnSale: true, discountPercent: 10, saleNote: "ƯU ĐÃI HÈ" },
-            { id: 5, title: "Cơm Cháy Mắm Hành", price: 30000, calo: 320, img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80", desc: "Sốt mắm hành kẹo dẻo ngấm sâu từng hạt nếp phồng.", status: "Đang Bán", isOnSale: false, discountPercent: 0, saleNote: "" },
-            { id: 6, title: "Thạch Lá Nếp & Trân Châu", price: 5000, calo: 60, img: "https://images.unsplash.com/photo-1558857563-b371033873b8?auto=format&fit=crop&w=600&q=80", desc: "Topping dai giòn mát lạnh thơm dịu lá nếp.", status: "Đang Bán", isOnSale: false, discountPercent: 0, saleNote: "" }
-        ];
-
-        let currentProducts = [];
-
-        function loadAndRenderMenu() {
-            const data = localStorage.getItem('lymap_products');
-            currentProducts = data ? JSON.parse(data) : DEFAULT_PRODUCTS;
-            if (!data) {
-                localStorage.setItem('lymap_products', JSON.stringify(DEFAULT_PRODUCTS));
+        const DEFAULT_MENU = {
+            1: {
+                id: 1,
+                category: "sua",
+                title: "Sữa Đậu Nành Tươi",
+                price: 10000,
+                calo: "120",
+                img: "https://images.unsplash.com/photo-1528750997573-59b89d56f4f7?auto=format&fit=crop&w=600&q=80",
+                desc: "Vị béo ngậy mộc mạc tự nhiên từ hạt đậu nành mới nấu.",
+                ingredients: "100% Đậu nành hữu cơ nguyên chất, nước lọc tinh khiết, đường phèn tự nhiên (có tùy chọn không đường).",
+                benefits: "Giàu đạm thực vật, Isoflavone tốt cho tim mạch, hỗ trợ làm đẹp da và cân bằng vóc dáng.",
+                batch: "09:30 AM",
+                sold: "4.520+",
+                protein: "6.8g",
+                carbs: "12.5g",
+                fat: "3.2g",
+                score: "9.6",
+                pctProtein: 35,
+                pctCarbs: 12,
+                pctFat: 14,
+                isOnSale: true,
+                discountPercent: 20,
+                saleNote: "GIẢM 20%"
+            },
+            2: {
+                id: 2,
+                category: "sua",
+                title: "Sữa Bắp Tươi",
+                price: 15000,
+                calo: "160",
+                img: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
+                desc: "Thơm lừng mùi bắp ngọt non, vị ngọt thanh dịu dàng.",
+                ingredients: "Bắp ngọt tươi bẻ trong ngày tại Biên Hòa, sữa tươi tiệt trùng, đường phèn thanh dịu.",
+                benefits: "Cung cấp Vitamin A sáng mắt, giàu chất xơ tự nhiên hỗ trợ hệ tiêu hóa hoạt động khỏe mạnh.",
+                batch: "10:00 AM",
+                sold: "3.210+",
+                protein: "3.5g",
+                carbs: "28.0g",
+                fat: "4.2g",
+                score: "9.2",
+                pctProtein: 18,
+                pctCarbs: 42,
+                pctFat: 18,
+                isOnSale: false,
+                discountPercent: 0,
+                saleNote: ""
+            },
+            3: {
+                id: 3,
+                category: "sua",
+                title: "Sữa Đậu Đỏ",
+                price: 15000,
+                calo: "140",
+                img: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=600&q=80",
+                desc: "Bổ máu, thanh mát cơ thể, giải nhiệt hiệu quả ngày hè.",
+                ingredients: "Đậu đỏ hạt nhỏ ninh mềm, nước hầm cô đặc giữ trọn chất, đường thanh.",
+                benefits: "Bổ máu, chứa nhiều chất chống oxy hóa, thanh nhiệt giải độc cơ thể hiệu quả.",
+                batch: "08:30 AM",
+                sold: "1.890+",
+                protein: "5.2g",
+                carbs: "22.0g",
+                fat: "2.1g",
+                score: "9.5",
+                pctProtein: 26,
+                pctCarbs: 32,
+                pctFat: 9,
+                isOnSale: false,
+                discountPercent: 0,
+                saleNote: ""
+            },
+            4: {
+                id: 4,
+                category: "comchay",
+                title: "Cơm Cháy Chà Bông",
+                price: 35000,
+                calo: "380",
+                img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80",
+                desc: "Giòn rụm, chà bông ngập tràn kèm sốt mắm ớt cay mặn ngọt.",
+                ingredients: "Gạo nếp dẻo sấy giòn tan, chà bông thịt heo hảo hạng phủ ngập mặt, sốt mắm ớt kẹo độc quyền.",
+                benefits: "Món ăn vặt thơm giòn kết hợp trọn vẹn cùng ly sữa tươi mát lạnh.",
+                batch: "Mới sấy",
+                sold: "5.600+",
+                protein: "16.5g",
+                carbs: "48.0g",
+                fat: "14.2g",
+                score: "8.8",
+                pctProtein: 45,
+                pctCarbs: 60,
+                pctFat: 38,
+                isOnSale: true,
+                discountPercent: 10,
+                saleNote: "ƯU ĐÃI HÈ"
+            },
+            5: {
+                id: 5,
+                category: "comchay",
+                title: "Cơm Cháy Mắm Hành",
+                price: 30000,
+                calo: "320",
+                img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80",
+                desc: "Sốt mắm hành dẻo kẹo thơm nức mũi, ăn vặt cực bắt miệng.",
+                ingredients: "Gạo nếp chiên phồng xốp giòn, mỡ hành lá tươi thơm phức, nước mắm ớt rim kẹo dẻo.",
+                benefits: "Vị cay mặn ngọt béo hài hòa, giòn rụm bắt miệng.",
+                batch: "Đang nấu",
+                sold: "2.100+",
+                protein: "6.2g",
+                carbs: "44.0g",
+                fat: "12.8g",
+                score: "8.5",
+                pctProtein: 20,
+                pctCarbs: 55,
+                pctFat: 34,
+                isOnSale: false,
+                discountPercent: 0,
+                saleNote: ""
+            },
+            6: {
+                id: 6,
+                category: "topping",
+                title: "Thạch Lá Nếp & Trân Châu",
+                price: 5000,
+                calo: "60",
+                img: "https://images.unsplash.com/photo-1558857563-b371033873b8?auto=format&fit=crop&w=600&q=80",
+                desc: "Topping dai giòn sần sật, thanh mát và thơm dịu lá nếp.",
+                ingredients: "Lá nếp tươi nấu thạch dẻo xanh mướt, trân châu nếp cẩm dẻo bùi, sương sáo thanh mát.",
+                benefits: "Tăng thêm độ hấp dẫn và vui miệng cho ly sữa tươi nhà làm.",
+                batch: "Sẵn hàng",
+                sold: "4.100+",
+                protein: "0.5g",
+                carbs: "14.0g",
+                fat: "0.2g",
+                score: "9.0",
+                pctProtein: 5,
+                pctCarbs: 20,
+                pctFat: 2,
+                isOnSale: false,
+                discountPercent: 0,
+                saleNote: ""
             }
+        };
 
+        let currentDisplayProducts = {};
+
+        function loadSyncedMenu() {
+            const saved = localStorage.getItem('lymap_products');
+            if (saved) {
+                const adminList = JSON.parse(saved);
+                currentDisplayProducts = {};
+                adminList.forEach(item => {
+                    const fallback = DEFAULT_MENU[item.id] || {};
+                    currentDisplayProducts[item.id] = {
+                        ...fallback,
+                        ...item
+                    };
+                });
+            } else {
+                currentDisplayProducts = { ...DEFAULT_MENU };
+                const adminInitial = Object.values(DEFAULT_MENU).map(p => ({
+                    id: p.id,
+                    title: p.title,
+                    price: p.price,
+                    calo: p.calo,
+                    img: p.img,
+                    status: "Đang Bán",
+                    isOnSale: p.isOnSale || false,
+                    discountPercent: p.discountPercent || 0,
+                    saleNote: p.saleNote || ""
+                }));
+                localStorage.setItem('lymap_products', JSON.stringify(adminInitial));
+            }
+            renderMenuGrid();
+        }
+
+        function renderMenuGrid(filter = 'all') {
             const container = document.getElementById('product-grid');
             if (!container) return;
             container.innerHTML = '';
 
-            currentProducts.forEach(item => {
+            Object.values(currentDisplayProducts).forEach(item => {
+                if (filter !== 'all' && item.category !== filter) return;
+
                 const numPrice = typeof item.price === 'string' ? parseInt(item.price.replace(/\D/g, '')) || 0 : item.price;
                 const isOnSale = item.isOnSale && item.discountPercent > 0;
                 const finalPrice = isOnSale ? numPrice * (100 - item.discountPercent) / 100 : numPrice;
 
                 const card = document.createElement('div');
-                card.className = "bg-white rounded-3xl p-5 border border-slate-200 shadow-sm hover:shadow-md transition cursor-pointer";
+                card.className = "menu-card bg-surface-container-lowest rounded-[32px] p-5 soft-shadow hover:shadow-xl hover:shadow-primary/15 transition-all duration-300 hover:-translate-y-2 border border-tertiary-fixed-dim cursor-pointer group";
+                card.setAttribute('data-category', item.category || 'sua');
                 card.onclick = () => openDetail(item.id);
 
                 card.innerHTML = `
-                        <div class="relative overflow-hidden h-48 rounded-2xl bg-slate-50 mb-4">
-                            <img src="${item.img}" class="w-full h-full object-cover" alt="${item.title}" />
-                            ${isOnSale ? `<span class="absolute top-3 left-3 bg-red-600 text-white font-black text-[10px] px-3 py-1 rounded-full shadow-md uppercase">${item.saleNote || 'SALE ' + item.discountPercent + '%'}</span>` : ''}
-                            <span class="absolute top-3 right-3 bg-amber-300 text-amber-900 font-bold text-[10px] px-2.5 py-1 rounded-full">~${item.calo} kcal</span>
+                        <div class="relative overflow-hidden h-48 rounded-[24px] bg-slate-50 mb-4">
+                            <img src="${item.img}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="${item.title}" />
+                            ${isOnSale ? `<span class="absolute top-3 left-3 bg-red-600 text-white font-black text-[10px] px-3 py-1 rounded-full shadow-md uppercase tracking-wider">${item.saleNote || 'SALE ' + item.discountPercent + '%'}</span>` : ''}
+                            <span class="absolute top-3 right-3 bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-3 py-1 rounded-full uppercase tracking-wider">~${item.calo} kcal</span>
+                            <span class="absolute bottom-3 left-3 bg-on-surface/80 text-white text-[10px] font-semibold px-2 py-0.5 rounded-md">Đã bán: ${item.sold || '1.000+'}</span>
                         </div>
                         <div class="space-y-2">
-                            <h3 class="font-['Plus_Jakarta_Sans'] font-black text-lg text-slate-900">${item.title}</h3>
-                            <div class="flex items-center gap-2">
-                                ${isOnSale ? `<span class="text-xs line-through text-slate-400 font-bold">${numPrice.toLocaleString('vi-VN')} ₫</span>` : ''}
-                                <span class="text-base font-black ${isOnSale ? 'text-red-600' : 'text-[#0f5238]'}">${finalPrice.toLocaleString('vi-VN')} ₫</span>
+                            <div class="flex justify-between items-center">
+                                <h3 class="font-headline-sm text-headline-sm text-primary">${item.title}</h3>
+                                <div class="text-right">
+                                    ${isOnSale ? `<span class="block text-[11px] line-through text-slate-400 font-bold">${numPrice.toLocaleString('vi-VN')} ₫</span>` : ''}
+                                    <span class="font-label-bold text-label-bold text-on-surface ${isOnSale ? 'text-red-600' : ''}">${finalPrice.toLocaleString('vi-VN')} ₫</span>
+                                </div>
                             </div>
-                            <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
-                                <span class="text-xs text-slate-400 font-semibold">Tươi mới trong ngày</span>
-                                <span class="bg-[#0f5238] text-white text-xs font-bold px-4 py-2 rounded-xl">Chi tiết</span>
+                            <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">${item.desc || 'Thơm ngon, đậm vị tự nhiên.'}</p>
+                            <div class="pt-2 flex justify-between items-center text-xs border-t border-surface-container-high font-semibold">
+                                <span class="text-primary flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> ${item.batch || 'Đang sẵn hàng'}</span>
+                                <span class="text-slate-400">Phần tươi</span>
                             </div>
                         </div>
                     `;
@@ -206,22 +923,45 @@
         }
 
         function openDetail(id) {
-            const item = currentProducts.find(x => x.id === id);
+            const item = currentDisplayProducts[id];
             if (!item) return;
 
             const numPrice = typeof item.price === 'string' ? parseInt(item.price.replace(/\D/g, '')) || 0 : item.price;
             const isOnSale = item.isOnSale && item.discountPercent > 0;
             const finalPrice = isOnSale ? numPrice * (100 - item.discountPercent) / 100 : numPrice;
 
-            document.getElementById('modal-img').src = item.img;
             document.getElementById('modal-title').innerText = item.title;
-            document.getElementById('modal-desc').innerText = item.desc || "Sản phẩm chế biến thủ công tươi mới mỗi ngày.";
             document.getElementById('modal-price').innerHTML = isOnSale
-                ? `<span class="line-through text-slate-400 text-sm mr-2">${numPrice.toLocaleString('vi-VN')} ₫</span><span>${finalPrice.toLocaleString('vi-VN')} ₫</span>`
+                ? `<span class="line-through text-slate-400 text-sm mr-2">${numPrice.toLocaleString('vi-VN')} ₫</span><span class="text-red-600">${finalPrice.toLocaleString('vi-VN')} ₫</span>`
                 : `${numPrice.toLocaleString('vi-VN')} ₫`;
+            document.getElementById('modal-img').src = item.img;
+            document.getElementById('modal-ingredients').innerText = item.ingredients || 'Đậu hạt và nguyên liệu tự nhiên tươi mới tuyển chọn.';
+            document.getElementById('modal-benefits').innerText = item.benefits || 'Thơm ngon, thanh mát, bổ dưỡng và an toàn cho sức khỏe.';
+            document.getElementById('modal-batch').innerText = item.batch || '09:30 AM';
+            document.getElementById('modal-sold').innerText = item.sold || '3.500+';
 
-            const msg = `Chào Lý Mập Food, tôi muốn đặt món: ${item.title} (Giá: ${finalPrice.toLocaleString('vi-VN')} ₫)`;
-            document.getElementById('modal-zalo-link').href = `https://zalo.me/${ZALO_PHONE}?text=${encodeURIComponent(msg)}`;
+            document.getElementById('modal-calo-val').innerText = item.calo;
+            document.getElementById('modal-protein-val').innerText = item.protein || '5.5g';
+            document.getElementById('modal-carbs-val').innerText = item.carbs || '18.0g';
+            document.getElementById('modal-fat-val').innerText = item.fat || '3.5g';
+
+            document.getElementById('modal-health-score').innerText = item.score || '9.5';
+
+            const pctP = item.pctProtein || 25;
+            const pctC = item.pctCarbs || 30;
+            const pctF = item.pctFat || 15;
+
+            document.getElementById('bar-protein-text').innerText = pctP + '%';
+            document.getElementById('bar-protein').style.width = pctP + '%';
+
+            document.getElementById('bar-carbs-text').innerText = pctC + '%';
+            document.getElementById('bar-carbs').style.width = pctC + '%';
+
+            document.getElementById('bar-fat-text').innerText = pctF + '%';
+            document.getElementById('bar-fat').style.width = pctF + '%';
+
+            let zaloMsg = `Chào Lý Mập Food, tôi muốn đặt món: ${item.title} (Giá: ${finalPrice.toLocaleString('vi-VN')} ₫)`;
+            document.getElementById('modal-zalo-link').href = `https://zalo.me/${ZALO_PHONE}?text=${encodeURIComponent(zaloMsg)}`;
 
             document.getElementById('product-modal').classList.remove('hidden');
         }
@@ -230,7 +970,147 @@
             document.getElementById('product-modal').classList.add('hidden');
         }
 
-        document.addEventListener('DOMContentLoaded', loadAndRenderMenu);
+        function filterMenu(category, btnElement) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.className = "filter-btn bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed font-label-bold text-label-bold px-6 py-2.5 rounded-full whitespace-nowrap active:scale-95 transition";
+            });
+            if (btnElement) {
+                btnElement.className = "filter-btn bg-primary text-on-primary font-label-bold text-label-bold px-6 py-2.5 rounded-full whitespace-nowrap active:scale-95 shadow-sm transition";
+            }
+            renderMenuGrid(category);
+        }
+
+        function toggleSearchBar() {
+            const searchContainer = document.getElementById('search-bar-container');
+            searchContainer.classList.toggle('hidden');
+            if (!searchContainer.classList.contains('hidden')) {
+                document.getElementById('nav-search-input').focus();
+            }
+        }
+
+        function searchMenuItems(keyword) {
+            const query = keyword.toLowerCase().trim();
+            document.querySelectorAll('.menu-card').forEach(card => {
+                const text = card.innerText.toLowerCase();
+                card.style.display = text.includes(query) ? 'block' : 'none';
+            });
+        }
+
+        function updateLiveBatchStatus() {
+            const now = new Date();
+            const currentHour = now.getHours();
+            const currentMinute = now.getMinutes();
+            const currentTimeVal = currentHour * 60 + currentMinute;
+
+            const openTimeVal = 6 * 60;
+            const closeTimeVal = 21 * 60 + 30;
+
+            const statusBadge = document.getElementById('store-status-badge');
+            const pingDot = document.getElementById('store-ping');
+            const batchFullText = document.getElementById('batch-time-text');
+
+            if (currentTimeVal >= openTimeVal && currentTimeVal <= closeTimeVal) {
+                statusBadge.innerText = "Đang mở cửa";
+                statusBadge.className = "bg-secondary-container text-on-surface px-2.5 py-0.5 rounded-full text-xs font-bold uppercase";
+                pingDot.className = "w-2 h-2 rounded-full bg-secondary-container animate-ping";
+
+                const batchSchedules = [
+                    { h: 6, m: 0 }, { h: 8, m: 30 }, { h: 11, m: 0 },
+                    { h: 14, m: 0 }, { h: 16, m: 30 }, { h: 19, m: 0 }
+                ];
+
+                let latestBatch = batchSchedules[0];
+                for (let i = 0; i < batchSchedules.length; i++) {
+                    let bVal = batchSchedules[i].h * 60 + batchSchedules[i].m;
+                    if (currentTimeVal >= bVal) latestBatch = batchSchedules[i];
+                }
+
+                let formattedH = latestBatch.h < 10 ? '0' + latestBatch.h : latestBatch.h;
+                let formattedM = latestBatch.m < 10 ? '0' + latestBatch.m : latestBatch.m;
+                let timeLabel = latestBatch.h < 12 ? 'sáng nay' : (latestBatch.h < 18 ? 'chiều nay' : 'tối nay');
+
+                batchFullText.innerHTML = `Đợt sữa mới nấu lúc <strong id="live-batch-time" class="text-secondary-container font-bold">${formattedH}:${formattedM} ${timeLabel}</strong>`;
+            } else {
+                statusBadge.innerText = "Tạm nghỉ";
+                statusBadge.className = "bg-amber-700 text-white px-2.5 py-0.5 rounded-full text-xs font-bold uppercase";
+                pingDot.className = "w-2 h-2 rounded-full bg-amber-300";
+                batchFullText.innerHTML = `<strong class="text-secondary-container">Hẹn gặp lại quý khách vào 06:00 sáng mai!</strong>`;
+            }
+        }
+
+        updateLiveBatchStatus();
+        setInterval(updateLiveBatchStatus, 60000);
+
+        let currentBase = 'Sữa Đậu Nành';
+        let currentBaseCalo = 120;
+        let currentSugar = '100% Chuẩn vị';
+        let selectedToppings = {};
+
+        function updateSummary() {
+            document.getElementById('summary-base').innerText = currentBase;
+            document.getElementById('summary-sugar').innerText = currentSugar;
+
+            let toppingNames = Object.keys(selectedToppings);
+            document.getElementById('summary-toppings').innerText = toppingNames.length > 0 ? toppingNames.join(', ') : 'Chưa chọn';
+
+            let toppingTotalCalo = Object.values(selectedToppings).reduce((a, b) => a + b, 0);
+            let total = currentBaseCalo + toppingTotalCalo;
+            document.getElementById('total-calo').innerText = total;
+
+            let zaloText = `Chào Lý Mập Food, tôi muốn đặt công thức tự mix: ${currentBase} (${currentSugar}) với topping: ${toppingNames.length > 0 ? toppingNames.join(', ') : 'Không topping'}`;
+            document.getElementById('btn-zalo-order').href = `https://zalo.me/${ZALO_PHONE}?text=${encodeURIComponent(zaloText)}`;
+        }
+
+        function selectBase(name, calo, btnElement) {
+            currentBase = name;
+            currentBaseCalo = calo;
+
+            document.querySelectorAll('.base-btn').forEach(btn => {
+                btn.className = "base-btn py-3 px-2 text-xs font-bold rounded-2xl bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed transition";
+            });
+
+            if (btnElement) {
+                btnElement.className = "base-btn active-btn py-3 px-2 text-xs font-bold rounded-2xl bg-primary text-on-primary shadow-sm transition";
+            }
+            updateSummary();
+        }
+
+        function selectSugar(sugar, btnElement) {
+            currentSugar = sugar;
+            document.querySelectorAll('.sugar-btn').forEach(btn => {
+                btn.className = "sugar-btn py-2.5 text-xs font-bold rounded-2xl bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed transition";
+            });
+
+            if (btnElement) {
+                btnElement.className = "sugar-btn active-btn py-2.5 text-xs font-bold rounded-2xl bg-secondary-container text-on-secondary-container shadow-sm transition";
+            }
+            updateSummary();
+        }
+
+        function toggleTopping(name, calo, btnElement) {
+            if (selectedToppings[name]) {
+                delete selectedToppings[name];
+                btnElement.className = "topping-btn py-2.5 text-xs font-bold rounded-2xl bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed transition";
+            } else {
+                selectedToppings[name] = calo;
+                btnElement.className = "topping-btn py-2.5 text-xs font-bold rounded-xl bg-primary text-on-primary shadow-sm transition";
+            }
+            updateSummary();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSyncedMenu();
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in-up').forEach((el) => {
+                observer.observe(el);
+            });
+        });
     </script>
 </body>
 </html>
