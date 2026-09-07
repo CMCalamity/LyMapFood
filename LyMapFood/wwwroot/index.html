@@ -1,408 +1,278 @@
-﻿lucide.createIcons();
+﻿<!-- ĐẶT THẺ SCRIPT TRƯỚC THẺ ĐÓNG BODY -->
+<script>
+    lucide.createIcons();
 
-const ZALO_PHONE = "0862299479";
+    const ZALO_PHONE = "0862299479";
 
-const DEFAULT_MENU = {
-    1: {
-        id: 1,
-        category: "sua",
-        title: "Sữa Đậu Nành Tươi",
-        price: 10000,
-        calo: "120",
-        img: "https://images.unsplash.com/photo-1528750997573-59b89d56f4f7?auto=format&fit=crop&w=600&q=80",
-        desc: "Vị béo ngậy mộc mạc tự nhiên từ hạt đậu nành mới nấu.",
-        ingredients: "100% Đậu nành hữu cơ nguyên chất, nước lọc tinh khiết, đường phèn tự nhiên (có tùy chọn không đường).",
-        benefits: "Giàu đạm thực vật, Isoflavone tốt cho tim mạch, hỗ trợ làm đẹp da và cân bằng vóc dáng.",
-        batch: "09:30 AM",
-        sold: "4.520+",
-        protein: "6.8g",
-        carbs: "12.5g",
-        fat: "3.2g",
-        score: "9.6",
-        pctProtein: 35,
-        pctCarbs: 12,
-        pctFat: 14,
-        isOnSale: true,
-        discountPercent: 20,
-        saleNote: "GIẢM 20%"
-    },
-    2: {
-        id: 2,
-        category: "sua",
-        title: "Sữa Bắp Tươi",
-        price: 15000,
-        calo: "160",
-        img: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-        desc: "Thơm lừng mùi bắp ngọt non, vị ngọt thanh dịu dàng.",
-        ingredients: "Bắp ngọt tươi bẻ trong ngày tại Biên Hòa, sữa tươi tiệt trùng, đường phèn thanh dịu.",
-        benefits: "Cung cấp Vitamin A sáng mắt, giàu chất xơ tự nhiên hỗ trợ hệ tiêu hóa hoạt động khỏe mạnh.",
-        batch: "10:00 AM",
-        sold: "3.210+",
-        protein: "3.5g",
-        carbs: "28.0g",
-        fat: "4.2g",
-        score: "9.2",
-        pctProtein: 18,
-        pctCarbs: 42,
-        pctFat: 18,
-        isOnSale: false,
-        discountPercent: 0,
-        saleNote: ""
-    },
-    3: {
-        id: 3,
-        category: "sua",
-        title: "Sữa Đậu Đỏ",
-        price: 15000,
-        calo: "140",
-        img: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=600&q=80",
-        desc: "Bổ máu, thanh mát cơ thể, giải nhiệt hiệu quả ngày hè.",
-        ingredients: "Đậu đỏ hạt nhỏ ninh mềm, nước hầm cô đặc giữ trọn chất, đường thanh.",
-        benefits: "Bổ máu, chứa nhiều chất chống oxy hóa, thanh nhiệt giải độc cơ thể hiệu quả.",
-        batch: "08:30 AM",
-        sold: "1.890+",
-        protein: "5.2g",
-        carbs: "22.0g",
-        fat: "2.1g",
-        score: "9.5",
-        pctProtein: 26,
-        pctCarbs: 32,
-        pctFat: 9,
-        isOnSale: false,
-        discountPercent: 0,
-        saleNote: ""
-    },
-    4: {
-        id: 4,
-        category: "comchay",
-        title: "Cơm Cháy Chà Bông",
-        price: 35000,
-        calo: "380",
-        img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80",
-        desc: "Giòn rụm, chà bông ngập tràn kèm sốt mắm ớt cay mặn ngọt.",
-        ingredients: "Gạo nếp dẻo sấy giòn tan, chà bông thịt heo hảo hạng phủ ngập mặt, sốt mắm ớt kẹo độc quyền.",
-        benefits: "Món ăn vặt thơm giòn kết hợp trọn vẹn cùng ly sữa tươi mát lạnh.",
-        batch: "Mới sấy",
-        sold: "5.600+",
-        protein: "16.5g",
-        carbs: "48.0g",
-        fat: "14.2g",
-        score: "8.8",
-        pctProtein: 45,
-        pctCarbs: 60,
-        pctFat: 38,
-        isOnSale: true,
-        discountPercent: 10,
-        saleNote: "ƯU ĐÃI HÈ"
-    },
-    5: {
-        id: 5,
-        category: "comchay",
-        title: "Cơm Cháy Mắm Hành",
-        price: 30000,
-        calo: "320",
-        img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80",
-        desc: "Sốt mắm hành dẻo kẹo thơm nức mũi, ăn vặt cực bắt miệng.",
-        ingredients: "Gạo nếp chiên phồng xốp giòn, mỡ hành lá tươi thơm phức, nước mắm ớt rim kẹo dẻo.",
-        benefits: "Vị cay mặn ngọt béo hài hòa, giòn rụm bắt miệng.",
-        batch: "Đang nấu",
-        sold: "2.100+",
-        protein: "6.2g",
-        carbs: "44.0g",
-        fat: "12.8g",
-        score: "8.5",
-        pctProtein: 20,
-        pctCarbs: 55,
-        pctFat: 34,
-        isOnSale: false,
-        discountPercent: 0,
-        saleNote: ""
-    },
-    6: {
-        id: 6,
-        category: "topping",
-        title: "Thạch Lá Nếp & Trân Châu",
-        price: 5000,
-        calo: "60",
-        img: "https://images.unsplash.com/photo-1558857563-b371033873b8?auto=format&fit=crop&w=600&q=80",
-        desc: "Topping dai giòn sần sật, thanh mát và thơm dịu lá nếp.",
-        ingredients: "Lá nếp tươi nấu thạch dẻo xanh mướt, trân châu nếp cẩm dẻo bùi, sương sáo thanh mát.",
-        benefits: "Tăng thêm độ hấp dẫn và vui miệng cho ly sữa tươi nhà làm.",
-        batch: "Sẵn hàng",
-        sold: "4.100+",
-        protein: "0.5g",
-        carbs: "14.0g",
-        fat: "0.2g",
-        score: "9.0",
-        pctProtein: 5,
-        pctCarbs: 20,
-        pctFat: 2,
-        isOnSale: false,
-        discountPercent: 0,
-        saleNote: ""
+    const DEFAULT_MENU = {
+        1: { id: 1, category: "sua", title: "Sữa Đậu Nành Tươi", price: 10000, calo: "120", img: "https://images.unsplash.com/photo-1528750997573-59b89d56f4f7?auto=format&fit=crop&w=600&q=80", desc: "Vị béo ngậy mộc mạc tự nhiên từ hạt đậu nành mới nấu.", ingredients: "100% Đậu nành hữu cơ nguyên chất, nước lọc tinh khiết, đường phèn tự nhiên.", benefits: "Giàu đạm thực vật, Isoflavone tốt cho tim mạch, hỗ trợ làm đẹp da.", batch: "09:30 AM", sold: "4.520+", protein: "6.8g", carbs: "12.5g", fat: "3.2g", score: "9.6", pctProtein: 35, pctCarbs: 12, pctFat: 14, isOnSale: true, discountPercent: 20, saleNote: "GIẢM 20%" },
+        2: { id: 2, category: "sua", title: "Sữa Bắp Tươi", price: 15000, calo: "160", img: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80", desc: "Thơm lừng mùi bắp ngọt non, vị ngọt thanh dịu dàng.", ingredients: "Bắp ngọt tươi bẻ trong ngày tại Biên Hòa, sữa tươi tiệt trùng, đường phèn thanh dịu.", benefits: "Cung cấp Vitamin A sáng mắt, giàu chất xơ tự nhiên hỗ trợ tiêu hóa.", batch: "10:00 AM", sold: "3.210+", protein: "3.5g", carbs: "28.0g", fat: "4.2g", score: "9.2", pctProtein: 18, pctCarbs: 42, pctFat: 18, isOnSale: false, discountPercent: 0, saleNote: "" },
+        3: { id: 3, category: "sua", title: "Sữa Đậu Đỏ", price: 15000, calo: "140", img: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=600&q=80", desc: "Bổ máu, thanh mát cơ thể, giải nhiệt hiệu quả ngày hè.", ingredients: "Đậu đỏ hạt nhỏ ninh mềm, nước hầm cô đặc giữ trọn chất, đường thanh.", benefits: "Bổ máu, chứa nhiều chất chống oxy hóa, thanh nhiệt giải độc.", batch: "08:30 AM", sold: "1.890+", protein: "5.2g", carbs: "22.0g", fat: "2.1g", score: "9.5", pctProtein: 26, pctCarbs: 32, pctFat: 9, isOnSale: false, discountPercent: 0, saleNote: "" },
+        4: { id: 4, category: "comchay", title: "Cơm Cháy Chà Bông", price: 35000, calo: "380", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80", desc: "Giòn rụm, chà bông ngập tràn kèm sốt mắm ớt cay mặn ngọt.", ingredients: "Gạo nếp dẻo sấy giòn tan, chà bông thịt heo hảo hạng, sốt mắm ớt kẹo độc quyền.", benefits: "Món ăn vặt thơm giòn kết hợp trọn vẹn cùng ly sữa tươi mát lạnh.", batch: "Mới sấy", sold: "5.600+", protein: "16.5g", carbs: "48.0g", fat: "14.2g", score: "8.8", pctProtein: 45, pctCarbs: 60, pctFat: 38, isOnSale: true, discountPercent: 10, saleNote: "ƯU ĐÃI HÈ" },
+        5: { id: 5, category: "comchay", title: "Cơm Cháy Mắm Hành", price: 30000, calo: "320", img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80", desc: "Sốt mắm hành dẻo kẹo ngấm sâu từng hạt nếp phồng giòn tan.", ingredients: "Gạo nếp chiên phồng xốp giòn, mỡ hành lá tươi thơm phức, nước mắm ớt rim kẹo.", benefits: "Vị cay mặn ngọt béo hài hòa, giòn rụm bắt miệng.", batch: "Đang nấu", sold: "2.100+", protein: "6.2g", carbs: "44.0g", fat: "12.8g", score: "8.5", pctProtein: 20, pctCarbs: 55, pctFat: 34, isOnSale: false, discountPercent: 0, saleNote: "" },
+        6: { id: 6, category: "topping", title: "Thạch Lá Nếp & Trân Châu", price: 5000, calo: "60", img: "https://images.unsplash.com/photo-1558857563-b371033873b8?auto=format&fit=crop&w=600&q=80", desc: "Topping dai giòn sần sật, thanh mát và thơm dịu lá nếp.", ingredients: "Lá nếp tươi nấu thạch dẻo xanh mướt, trân châu nếp cẩm dẻo bùi, sương sáo.", benefits: "Tăng thêm độ hấp dẫn và vui miệng cho ly sữa tươi nhà làm.", batch: "Sẵn hàng", sold: "4.100+", protein: "0.5g", carbs: "14.0g", fat: "0.2g", score: "9.0", pctProtein: 5, pctCarbs: 20, pctFat: 2, isOnSale: false, discountPercent: 0, saleNote: "" }
+    };
+
+    let currentDisplayProducts = {};
+
+    function loadSyncedMenu() {
+        const saved = localStorage.getItem('lymap_products');
+        if (saved) {
+            const adminList = JSON.parse(saved);
+            currentDisplayProducts = {};
+            adminList.forEach(item => {
+                const fallback = DEFAULT_MENU[item.id] || {};
+                currentDisplayProducts[item.id] = { ...fallback, ...item };
+            });
+        } else {
+            currentDisplayProducts = { ...DEFAULT_MENU };
+            const adminInitial = Object.values(DEFAULT_MENU).map(p => ({
+                id: p.id,
+                title: p.title,
+                price: p.price,
+                calo: p.calo,
+                img: p.img,
+                status: "Đang Bán",
+                isOnSale: p.isOnSale || false,
+                discountPercent: p.discountPercent || 0,
+                saleNote: p.saleNote || ""
+            }));
+            localStorage.setItem('lymap_products', JSON.stringify(adminInitial));
+        }
+        renderMenuGrid();
     }
-};
 
-let currentDisplayProducts = {};
+    function renderMenuGrid(filter = 'all') {
+        const container = document.getElementById('product-grid');
+        if (!container) return;
+        container.innerHTML = '';
 
-function loadSyncedMenu() {
-    const saved = localStorage.getItem('lymap_products');
-    if (saved) {
-        const adminList = JSON.parse(saved);
-        currentDisplayProducts = {};
-        adminList.forEach(item => {
-            const fallback = DEFAULT_MENU[item.id] || {};
-            currentDisplayProducts[item.id] = {
-                ...fallback,
-                ...item
-            };
+        Object.values(currentDisplayProducts).forEach(item => {
+            if (filter !== 'all' && item.category !== filter) return;
+
+            const numPrice = typeof item.price === 'string' ? parseInt(item.price.replace(/\D/g, '')) || 0 : item.price;
+            const isOnSale = item.isOnSale && item.discountPercent > 0;
+            const finalPrice = isOnSale ? numPrice * (100 - item.discountPercent) / 100 : numPrice;
+
+            const card = document.createElement('div');
+            card.className = "menu-card bg-surface-container-lowest rounded-[32px] p-5 soft-shadow hover:shadow-xl hover:shadow-primary/15 transition-all duration-300 hover:-translate-y-2 border border-tertiary-fixed-dim cursor-pointer group";
+            card.setAttribute('data-category', item.category || 'sua');
+            card.onclick = () => openDetail(item.id);
+
+            card.innerHTML = `
+                    <div class="relative overflow-hidden h-48 rounded-[24px] bg-slate-50 mb-4">
+                        <img src="${item.img}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="${item.title}" />
+                        ${isOnSale ? `<span class="absolute top-3 left-3 bg-red-600 text-white font-black text-[10px] px-3 py-1 rounded-full shadow-md uppercase tracking-wider">${item.saleNote || 'SALE ' + item.discountPercent + '%'}</span>` : ''}
+                        <span class="absolute top-3 right-3 bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-3 py-1 rounded-full uppercase tracking-wider">~${item.calo} kcal</span>
+                        <span class="absolute bottom-3 left-3 bg-on-surface/80 text-white text-[10px] font-semibold px-2 py-0.5 rounded-md">Đã bán: ${item.sold || '1.000+'}</span>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-headline-sm text-headline-sm text-primary">${item.title}</h3>
+                            <div class="text-right">
+                                ${isOnSale ? `<span class="block text-[11px] line-through text-slate-400 font-bold">${numPrice.toLocaleString('vi-VN')} ₫</span>` : ''}
+                                <span class="font-label-bold text-label-bold text-on-surface ${isOnSale ? 'text-red-600' : ''}">${finalPrice.toLocaleString('vi-VN')} ₫</span>
+                            </div>
+                        </div>
+                        <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">${item.desc || 'Thơm ngon, đậm vị tự nhiên.'}</p>
+                        <div class="pt-2 flex justify-between items-center text-xs border-t border-surface-container-high font-semibold">
+                            <span class="text-primary flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> ${item.batch || 'Đang sẵn hàng'}</span>
+                            <span class="text-slate-400">Phần tươi</span>
+                        </div>
+                    </div>
+                `;
+            container.appendChild(card);
         });
-    } else {
-        currentDisplayProducts = { ...DEFAULT_MENU };
-        const adminInitial = Object.values(DEFAULT_MENU).map(p => ({
-            id: p.id,
-            title: p.title,
-            price: p.price,
-            calo: p.calo,
-            img: p.img,
-            status: "Đang Bán",
-            isOnSale: p.isOnSale || false,
-            discountPercent: p.discountPercent || 0,
-            saleNote: p.saleNote || ""
-        }));
-        localStorage.setItem('lymap_products', JSON.stringify(adminInitial));
     }
-    renderMenuGrid();
-}
 
-function renderMenuGrid(filter = 'all') {
-    const container = document.getElementById('product-grid');
-    if (!container) return;
-    container.innerHTML = '';
-
-    Object.values(currentDisplayProducts).forEach(item => {
-        if (filter !== 'all' && item.category !== filter) return;
+    function openDetail(id) {
+        const item = currentDisplayProducts[id];
+        if (!item) return;
 
         const numPrice = typeof item.price === 'string' ? parseInt(item.price.replace(/\D/g, '')) || 0 : item.price;
         const isOnSale = item.isOnSale && item.discountPercent > 0;
         const finalPrice = isOnSale ? numPrice * (100 - item.discountPercent) / 100 : numPrice;
 
-        const card = document.createElement('div');
-        card.className = "menu-card bg-surface-container-lowest rounded-[32px] p-5 soft-shadow hover:shadow-xl hover:shadow-primary/15 transition-all duration-300 hover:-translate-y-2 border border-tertiary-fixed-dim cursor-pointer group";
-        card.setAttribute('data-category', item.category || 'sua');
-        card.onclick = () => openDetail(item.id);
+        document.getElementById('modal-title').innerText = item.title;
+        document.getElementById('modal-price').innerHTML = isOnSale
+            ? `<span class="line-through text-slate-400 text-sm mr-2">${numPrice.toLocaleString('vi-VN')} ₫</span><span class="text-red-600">${finalPrice.toLocaleString('vi-VN')} ₫</span>`
+            : `${numPrice.toLocaleString('vi-VN')} ₫`;
+        document.getElementById('modal-img').src = item.img;
+        document.getElementById('modal-ingredients').innerText = item.ingredients || 'Đậu hạt và nguyên liệu tự nhiên tươi mới tuyển chọn.';
+        document.getElementById('modal-benefits').innerText = item.benefits || 'Thơm ngon, thanh mát, bổ dưỡng và an toàn cho sức khỏe.';
+        document.getElementById('modal-batch').innerText = item.batch || '09:30 AM';
+        document.getElementById('modal-sold').innerText = item.sold || '3.500+';
 
-        card.innerHTML = `
-<div class="relative overflow-hidden h-48 rounded-[24px] bg-slate-50 mb-4">
-    <img src="${item.img}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="${item.title}" />
-    ${isOnSale ? `<span class="absolute top-3 left-3 bg-red-600 text-white font-black text-[10px] px-3 py-1 rounded-full shadow-md uppercase tracking-wider animate-pulse">${item.saleNote || 'SALE ' + item.discountPercent + '%'}</span>` : ''}
-    <span class="absolute top-3 right-3 bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-3 py-1 rounded-full uppercase tracking-wider">~${item.calo} kcal</span>
-    <span class="absolute bottom-3 left-3 bg-on-surface/80 text-white text-[10px] font-semibold px-2 py-0.5 rounded-md">Đã bán: ${item.sold || '1.000+'}</span>
-</div>
-<div class="space-y-2">
-    <div class="flex justify-between items-center">
-        <h3 class="font-headline-sm text-headline-sm text-primary">${item.title}</h3>
-        <div class="text-right">
-            ${isOnSale ? `<span class="block text-[11px] line-through text-slate-400 font-bold">${numPrice.toLocaleString('vi-VN')} ₫</span>` : ''}
-            <span class="font-label-bold text-label-bold text-on-surface text-red-600">${finalPrice.toLocaleString('vi-VN')} ₫</span>
-        </div>
-    </div>
-    <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">${item.desc || 'Thơm ngon, đậm vị tự nhiên.'}</p>
-    <div class="pt-2 flex justify-between items-center text-xs border-t border-surface-container-high font-semibold">
-        <span class="text-primary flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> ${item.batch || 'Đang sẵn hàng'}</span>
-        <span class="text-slate-400">Phần tươi</span>
-    </div>
-</div>
-        `;
-        container.appendChild(card);
-    });
-}
+        document.getElementById('modal-calo-val').innerText = item.calo;
+        document.getElementById('modal-protein-val').innerText = item.protein || '5.5g';
+        document.getElementById('modal-carbs-val').innerText = item.carbs || '18.0g';
+        document.getElementById('modal-fat-val').innerText = item.fat || '3.5g';
+        document.getElementById('modal-health-score').innerText = item.score || '9.5';
 
-function openDetail(id) {
-    const item = currentDisplayProducts[id];
-    if (!item) return;
+        const pctP = item.pctProtein || 25;
+        const pctC = item.pctCarbs || 30;
+        const pctF = item.pctFat || 15;
 
-    const numPrice = typeof item.price === 'string' ? parseInt(item.price.replace(/\D/g, '')) || 0 : item.price;
-    const isOnSale = item.isOnSale && item.discountPercent > 0;
-    const finalPrice = isOnSale ? numPrice * (100 - item.discountPercent) / 100 : numPrice;
+        document.getElementById('bar-protein-text').innerText = pctP + '%';
+        document.getElementById('bar-protein').style.width = pctP + '%';
 
-    document.getElementById('modal-title').innerText = item.title;
-    document.getElementById('modal-price').innerHTML = isOnSale
-        ? `<span class="line-through text-slate-400 text-sm mr-2">${numPrice.toLocaleString('vi-VN')} ₫</span><span class="text-red-600">${finalPrice.toLocaleString('vi-VN')} ₫</span>`
-        : `${numPrice.toLocaleString('vi-VN')} ₫`;
-    document.getElementById('modal-img').src = item.img;
-    document.getElementById('modal-ingredients').innerText = item.ingredients || 'Đậu hạt và nguyên liệu tự nhiên tươi mới tuyển chọn.';
-    document.getElementById('modal-benefits').innerText = item.benefits || 'Thơm ngon, thanh mát, bổ dưỡng và an toàn cho sức khỏe.';
-    document.getElementById('modal-batch').innerText = item.batch || '09:30 AM';
-    document.getElementById('modal-sold').innerText = item.sold || '3.500+';
+        document.getElementById('bar-carbs-text').innerText = pctC + '%';
+        document.getElementById('bar-carbs').style.width = pctC + '%';
 
-    document.getElementById('modal-calo-val').innerText = item.calo;
-    document.getElementById('modal-protein-val').innerText = item.protein || '5.5g';
-    document.getElementById('modal-carbs-val').innerText = item.carbs || '18.0g';
-    document.getElementById('modal-fat-val').innerText = item.fat || '3.5g';
-    document.getElementById('modal-health-score').innerText = item.score || '9.5';
+        document.getElementById('bar-fat-text').innerText = pctF + '%';
+        document.getElementById('bar-fat').style.width = pctF + '%';
 
-    const pctP = item.pctProtein || 25;
-    const pctC = item.pctCarbs || 30;
-    const pctF = item.pctFat || 15;
+        let zaloMsg = `Chào Lý Mập Food, tôi muốn đặt món: ${item.title} (Giá: ${finalPrice.toLocaleString('vi-VN')} ₫)`;
+        document.getElementById('modal-zalo-link').href = `https://zalo.me/${ZALO_PHONE}?text=${encodeURIComponent(zaloMsg)}`;
 
-    document.getElementById('bar-protein-text').innerText = pctP + '%';
-    document.getElementById('bar-protein').style.width = pctP + '%';
-
-    document.getElementById('bar-carbs-text').innerText = pctC + '%';
-    document.getElementById('bar-carbs').style.width = pctC + '%';
-
-    document.getElementById('bar-fat-text').innerText = pctF + '%';
-    document.getElementById('bar-fat').style.width = pctF + '%';
-
-    let zaloMsg = `Chào Lý Mập Food, tôi muốn đặt món: ${item.title} (Giá: ${finalPrice.toLocaleString('vi-VN')} ₫)`;
-    document.getElementById('modal-zalo-link').href = `https://zalo.me/${ZALO_PHONE}?text=${encodeURIComponent(zaloMsg)}`;
-
-    document.getElementById('product-modal').classList.remove('hidden');
-}
-
-function closeDetail() {
-    document.getElementById('product-modal').classList.add('hidden');
-}
-
-function filterMenu(category, btnElement) {
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.className = "filter-btn bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed font-label-bold text-label-bold px-6 py-2.5 rounded-full whitespace-nowrap active:scale-95 transition";
-    });
-    if (btnElement) {
-        btnElement.className = "filter-btn bg-primary text-on-primary font-label-bold text-label-bold px-6 py-2.5 rounded-full whitespace-nowrap active:scale-95 shadow-sm transition";
+        document.getElementById('product-modal').classList.remove('hidden');
     }
-    renderMenuGrid(category);
-}
 
-function toggleSearchBar() {
-    const searchContainer = document.getElementById('search-bar-container');
-    searchContainer.classList.toggle('hidden');
-    if (!searchContainer.classList.contains('hidden')) {
-        document.getElementById('nav-search-input').focus();
+    function closeDetail() {
+        document.getElementById('product-modal').classList.add('hidden');
     }
-}
 
-function searchMenuItems(keyword) {
-    const query = keyword.toLowerCase().trim();
-    document.querySelectorAll('.menu-card').forEach(card => {
-        const text = card.innerText.toLowerCase();
-        card.style.display = text.includes(query) ? 'block' : 'none';
-    });
-}
-
-function updateLiveBatchStatus() {
-    const now = new Date();
-    const currentHour = now.getHours();
-    const currentMinute = now.getMinutes();
-    const currentTimeVal = currentHour * 60 + currentMinute;
-
-    const openTimeVal = 6 * 60;
-    const closeTimeVal = 21 * 60 + 30;
-
-    const statusBadge = document.getElementById('store-status-badge');
-    const pingDot = document.getElementById('store-ping');
-    const batchFullText = document.getElementById('batch-time-text');
-
-    if (currentTimeVal >= openTimeVal && currentTimeVal <= closeTimeVal) {
-        statusBadge.innerText = "Đang mở cửa";
-        statusBadge.className = "bg-secondary-container text-on-surface px-2.5 py-0.5 rounded-full text-xs font-bold uppercase";
-        pingDot.className = "w-2 h-2 rounded-full bg-secondary-container animate-ping";
-
-        const batchSchedules = [
-            { h: 6, m: 0 }, { h: 8, m: 30 }, { h: 11, m: 0 },
-            { h: 14, m: 0 }, { h: 16, m: 30 }, { h: 19, m: 0 }
-        ];
-
-        let latestBatch = batchSchedules[0];
-        for (let i = 0; i < batchSchedules.length; i++) {
-            let bVal = batchSchedules[i].h * 60 + batchSchedules[i].m;
-            if (currentTimeVal >= bVal) latestBatch = batchSchedules[i];
-        }
-
-        let formattedH = latestBatch.h < 10 ? '0' + latestBatch.h : latestBatch.h;
-        let formattedM = latestBatch.m < 10 ? '0' + latestBatch.m : latestBatch.m;
-        let timeLabel = latestBatch.h < 12 ? 'sáng nay' : (latestBatch.h < 18 ? 'chiều nay' : 'tối nay');
-
-        batchFullText.innerHTML = `Đợt sữa mới nấu lúc <strong id="live-batch-time" class="text-secondary-container font-bold">${formattedH}:${formattedM} ${timeLabel}</strong>`;
-    } else {
-        statusBadge.innerText = "Tạm nghỉ";
-        statusBadge.className = "bg-amber-700 text-white px-2.5 py-0.5 rounded-full text-xs font-bold uppercase";
-        pingDot.className = "w-2 h-2 rounded-full bg-amber-300";
-        batchFullText.innerHTML = `<strong class="text-secondary-container">Hẹn gặp lại quý khách vào 06:00 sáng mai!</strong>`;
-    }
-}
-
-updateLiveBatchStatus();
-setInterval(updateLiveBatchStatus, 60000);
-
-let currentBase = 'Sữa Đậu Nành';
-let currentBaseCalo = 120;
-let currentSugar = '100% Chuẩn vị';
-let selectedToppings = {};
-
-function updateSummary() {
-    document.getElementById('summary-base').innerText = currentBase;
-    document.getElementById('summary-sugar').innerText = currentSugar;
-
-    let toppingNames = Object.keys(selectedToppings);
-    document.getElementById('summary-toppings').innerText = toppingNames.length > 0 ? toppingNames.join(', ') : 'Chưa chọn';
-
-    let toppingTotalCalo = Object.values(selectedToppings).reduce((a, b) => a + b, 0);
-    let total = currentBaseCalo + toppingTotalCalo;
-    document.getElementById('total-calo').innerText = total;
-
-    let zaloText = `Chào Lý Mập Food, tôi muốn đặt công thức tự mix: ${currentBase} (${currentSugar}) với topping: ${toppingNames.length > 0 ? toppingNames.join(', ') : 'Không topping'}`;
-    document.getElementById('btn-zalo-order').href = `https://zalo.me/${ZALO_PHONE}?text=${encodeURIComponent(zaloText)}`;
-}
-
-function selectBase(name, calo, btnElement) {
-    currentBase = name;
-    currentBaseCalo = calo;
-
-    document.querySelectorAll('.base-btn').forEach(btn => {
-        btn.className = "base-btn py-3 px-2 text-xs font-bold rounded-2xl bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed transition";
-    });
-
-    if (btnElement) {
-        btnElement.className = "base-btn active-btn py-3 px-2 text-xs font-bold rounded-2xl bg-primary text-on-primary shadow-sm transition";
-    }
-    updateSummary();
-}
-
-function selectSugar(sugar, btnElement) {
-    currentSugar = sugar;
-    document.querySelectorAll('.sugar-btn').forEach(btn => {
-        btn.className = "sugar-btn py-2.5 text-xs font-bold rounded-2xl bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed transition";
-    });
-
-    if (btnElement) {
-        btnElement.className = "sugar-btn active-btn py-2.5 text-xs font-bold rounded-2xl bg-secondary-container text-on-secondary-container shadow-sm transition";
-    }
-    updateSummary();
-}
-
-function toggleTopping(name, calo, btnElement) {
-    if (selectedToppings[name]) {
-        delete selectedToppings[name];
-        btnElement.className = "topping-btn py-2.5 text-xs font-bold rounded-2xl bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed transition";
-    } else {
-        selectedToppings[name] = calo;
-        btnElement.className = "topping-btn py-2.5 text-xs font-bold rounded-xl bg-primary text-on-primary shadow-sm transition";
-    }
-    updateSummary();
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    loadSyncedMenu();
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('visible');
+    function filterMenu(category, btnElement) {
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.className = "filter-btn bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed font-label-bold text-label-bold px-6 py-2.5 rounded-full whitespace-nowrap active:scale-95 transition";
         });
-    }, { threshold: 0.1 });
+        if (btnElement) {
+            btnElement.className = "filter-btn bg-primary text-on-primary font-label-bold text-label-bold px-6 py-2.5 rounded-full whitespace-nowrap active:scale-95 shadow-sm transition";
+        }
+        renderMenuGrid(category);
+    }
 
-    document.querySelectorAll('.fade-in-up').forEach((el) => {
-        observer.observe(el);
+    function toggleSearchBar() {
+        const searchContainer = document.getElementById('search-bar-container');
+        searchContainer.classList.toggle('hidden');
+        if (!searchContainer.classList.contains('hidden')) {
+            document.getElementById('nav-search-input').focus();
+        }
+    }
+
+    function searchMenuItems(keyword) {
+        const query = keyword.toLowerCase().trim();
+        document.querySelectorAll('.menu-card').forEach(card => {
+            const text = card.innerText.toLowerCase();
+            card.style.display = text.includes(query) ? 'block' : 'none';
+        });
+    }
+
+    function updateLiveBatchStatus() {
+        const now = new Date();
+        const currentHour = now.getHours();
+        const currentMinute = now.getMinutes();
+        const currentTimeVal = currentHour * 60 + currentMinute;
+
+        const openTimeVal = 6 * 60;
+        const closeTimeVal = 21 * 60 + 30;
+
+        const statusBadge = document.getElementById('store-status-badge');
+        const pingDot = document.getElementById('store-ping');
+        const batchFullText = document.getElementById('batch-time-text');
+
+        if (currentTimeVal >= openTimeVal && currentTimeVal <= closeTimeVal) {
+            statusBadge.innerText = "Đang mở cửa";
+            statusBadge.className = "bg-secondary-container text-on-surface px-2.5 py-0.5 rounded-full text-xs font-bold uppercase";
+            pingDot.className = "w-2 h-2 rounded-full bg-secondary-container animate-ping";
+
+            const batchSchedules = [
+                { h: 6, m: 0 }, { h: 8, m: 30 }, { h: 11, m: 0 },
+                { h: 14, m: 0 }, { h: 16, m: 30 }, { h: 19, m: 0 }
+            ];
+
+            let latestBatch = batchSchedules[0];
+            for (let i = 0; i < batchSchedules.length; i++) {
+                let bVal = batchSchedules[i].h * 60 + batchSchedules[i].m;
+                if (currentTimeVal >= bVal) latestBatch = batchSchedules[i];
+            }
+
+            let formattedH = latestBatch.h < 10 ? '0' + latestBatch.h : latestBatch.h;
+            let formattedM = latestBatch.m < 10 ? '0' + latestBatch.m : latestBatch.m;
+            let timeLabel = latestBatch.h < 12 ? 'sáng nay' : (latestBatch.h < 18 ? 'chiều nay' : 'tối nay');
+
+            batchFullText.innerHTML = `Đợt sữa mới nấu lúc <strong id="live-batch-time" class="text-secondary-container font-bold">${formattedH}:${formattedM} ${timeLabel}</strong>`;
+        } else {
+            statusBadge.innerText = "Tạm nghỉ";
+            statusBadge.className = "bg-amber-700 text-white px-2.5 py-0.5 rounded-full text-xs font-bold uppercase";
+            pingDot.className = "w-2 h-2 rounded-full bg-amber-300";
+            batchFullText.innerHTML = `<strong class="text-secondary-container">Hẹn gặp lại quý khách vào 06:00 sáng mai!</strong>`;
+        }
+    }
+
+    updateLiveBatchStatus();
+    setInterval(updateLiveBatchStatus, 60000);
+
+    let currentBase = 'Sữa Đậu Nành';
+    let currentBaseCalo = 120;
+    let currentSugar = '100% Chuẩn vị';
+    let selectedToppings = {};
+
+    function updateSummary() {
+        document.getElementById('summary-base').innerText = currentBase;
+        document.getElementById('summary-sugar').innerText = currentSugar;
+
+        let toppingNames = Object.keys(selectedToppings);
+        document.getElementById('summary-toppings').innerText = toppingNames.length > 0 ? toppingNames.join(', ') : 'Chưa chọn';
+
+        let toppingTotalCalo = Object.values(selectedToppings).reduce((a, b) => a + b, 0);
+        let total = currentBaseCalo + toppingTotalCalo;
+        document.getElementById('total-calo').innerText = total;
+
+        let zaloText = `Chào Lý Mập Food, tôi muốn đặt công thức tự mix: ${currentBase} (${currentSugar}) với topping: ${toppingNames.length > 0 ? toppingNames.join(', ') : 'Không topping'}`;
+        document.getElementById('btn-zalo-order').href = `https://zalo.me/${ZALO_PHONE}?text=${encodeURIComponent(zaloText)}`;
+    }
+
+    function selectBase(name, calo, btnElement) {
+        currentBase = name;
+        currentBaseCalo = calo;
+
+        document.querySelectorAll('.base-btn').forEach(btn => {
+            btn.className = "base-btn py-3 px-2 text-xs font-bold rounded-2xl bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed transition";
+        });
+
+        if (btnElement) {
+            btnElement.className = "base-btn active-btn py-3 px-2 text-xs font-bold rounded-2xl bg-primary text-on-primary shadow-sm transition";
+        }
+        updateSummary();
+    }
+
+    function selectSugar(sugar, btnElement) {
+        currentSugar = sugar;
+        document.querySelectorAll('.sugar-btn').forEach(btn => {
+            btn.className = "sugar-btn py-2.5 text-xs font-bold rounded-2xl bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed transition";
+        });
+
+        if (btnElement) {
+            btnElement.className = "sugar-btn active-btn py-2.5 text-xs font-bold rounded-2xl bg-secondary-container text-on-secondary-container shadow-sm transition";
+        }
+        updateSummary();
+    }
+
+    function toggleTopping(name, calo, btnElement) {
+        if (selectedToppings[name]) {
+            delete selectedToppings[name];
+            btnElement.className = "topping-btn py-2.5 text-xs font-bold rounded-2xl bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed transition";
+        } else {
+            selectedToppings[name] = calo;
+            btnElement.className = "topping-btn py-2.5 text-xs font-bold rounded-xl bg-primary text-on-primary shadow-sm transition";
+        }
+        updateSummary();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        loadSyncedMenu();
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in-up').forEach((el) => {
+            observer.observe(el);
+        });
     });
-});
+</script>
+</body>
+</html>
