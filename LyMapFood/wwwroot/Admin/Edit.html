@@ -21,40 +21,150 @@
         </div>
 
         <form onsubmit="handleSaveEdit(event)" class="space-y-4">
-            <input type="hidden" id="edit-id" value="1" />
+            <input type="hidden" id="edit-id" />
 
             <div>
                 <label class="block text-xs font-black mb-1">TÊN SẢN PHẨM:</label>
-                <input type="text" id="edit-name" value="Sữa Đậu Nành Tươi" class="w-full bg-[#FFFBF2] p-3 rounded-xl border-2 border-[#2D2A26] text-xs font-bold focus:outline-none focus:border-[#E0533C]" required />
+                <input type="text" id="edit-name" class="w-full bg-[#FFFBF2] p-3 rounded-xl border-2 border-[#2D2A26] text-xs font-bold focus:outline-none focus:border-[#E0533C]" required />
             </div>
 
             <div class="grid grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-xs font-black mb-1">GIÁ BÁN (ĐỒNG):</label>
-                    <input type="number" id="edit-price" value="15000" class="w-full bg-[#FFFBF2] p-3 rounded-xl border-2 border-[#2D2A26] text-xs font-bold focus:outline-none focus:border-[#E0533C]" required />
+                    <label class="block text-xs font-black mb-1">DANH MỤC (CHỌN HOẶC GÕ MỚI):</label>
+                    <input list="category-list" id="edit-category" placeholder="Chọn hoặc nhập danh mục" class="w-full bg-[#FFFBF2] p-3 rounded-xl border-2 border-[#2D2A26] text-xs font-bold focus:outline-none focus:border-[#E0533C]" required />
+                    <datalist id="category-list">
+                        <option value="Sữa Tươi">
+                        <option value="Cơm Cháy">
+                        <option value="Topping">
+                        <option value="Trà Trái Cây">
+                        <option value="Ăn Vặt">
+                    </datalist>
                 </div>
                 <div>
+                    <label class="block text-xs font-black mb-1">GIÁ BÁN (VNĐ):</label>
+                    <input type="number" id="edit-price" class="w-full bg-[#FFFBF2] p-3 rounded-xl border-2 border-[#2D2A26] text-xs font-bold focus:outline-none focus:border-[#E0533C]" required />
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div>
                     <label class="block text-xs font-black mb-1">CALO (KCAL):</label>
-                    <input type="number" id="edit-calo" value="120" class="w-full bg-[#FFFBF2] p-3 rounded-xl border-2 border-[#2D2A26] text-xs font-bold focus:outline-none focus:border-[#E0533C]" required />
+                    <input type="number" id="edit-calo" class="w-full bg-[#FFFBF2] p-3 rounded-xl border-2 border-[#2D2A26] text-xs font-bold focus:outline-none focus:border-[#E0533C]" />
+                </div>
+                <div>
+                    <label class="block text-xs font-black mb-1">TRẠNG THÁI BÁN:</label>
+                    <select id="edit-status" class="w-full bg-[#FFFBF2] p-3 rounded-xl border-2 border-[#2D2A26] text-xs font-bold focus:outline-none focus:border-[#E0533C]">
+                        <option value="Đang Bán">Đang Bán</option>
+                        <option value="Hết Hàng">Hết Hàng</option>
+                        <option value="Tạm Ngưng">Tạm Ngưng</option>
+                    </select>
                 </div>
             </div>
 
             <div>
                 <label class="block text-xs font-black mb-1">LINK HÌNH ẢNH (URL):</label>
-                <input type="text" id="edit-image" value="https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=crop&w=600&q=80" class="w-full bg-[#FFFBF2] p-3 rounded-xl border-2 border-[#2D2A26] text-xs font-bold focus:outline-none focus:border-[#E0533C]" required />
+                <input type="text" id="edit-image" class="w-full bg-[#FFFBF2] p-3 rounded-xl border-2 border-[#2D2A26] text-xs font-bold focus:outline-none focus:border-[#E0533C]" />
+            </div>
+
+            <div>
+                <label class="block text-xs font-black mb-1">MÔ TẢ MÓN:</label>
+                <textarea id="edit-desc" rows="2" class="w-full bg-[#FFFBF2] p-3 rounded-xl border-2 border-[#2D2A26] text-xs font-bold focus:outline-none focus:border-[#E0533C]"></textarea>
+            </div>
+
+            <!-- Khuyến mãi -->
+            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
+                <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" id="edit-sale" class="w-4 h-4 text-[#E0533C] rounded focus:ring-0" />
+                    <span class="text-xs font-black text-slate-800">ÁP DỤNG GIẢM GIÁ</span>
+                </label>
+                <div class="grid grid-cols-2 gap-3">
+                    <input type="number" id="edit-discount" placeholder="% Giảm (VD: 20)" min="1" max="90" class="bg-white p-2.5 rounded-xl border border-slate-300 text-xs font-bold" />
+                    <input type="text" id="edit-salenote" placeholder="Nhãn Sale (VD: FLASH SALE)" class="bg-white p-2.5 rounded-xl border border-slate-300 text-xs font-bold" />
+                </div>
             </div>
 
             <button type="submit" class="w-full bg-[#E0533C] hover:bg-[#c9432b] text-white font-black py-3.5 rounded-xl border-2 border-[#2D2A26] shadow-[3px_3px_0px_0px_#2D2A26] transition text-xs tracking-wider uppercase">
-                LƯU CẬP NHẬT
+                LƯU CẬP NHẬT SẢN PHẨM
             </button>
         </form>
     </div>
 
     <script>
+        // 1. Tự động lấy ID món từ URL (?id=...) và đổ dữ liệu vào form
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = parseInt(urlParams.get('id'));
+
+            const stored = localStorage.getItem('lymap_products');
+            const products = stored ? JSON.parse(stored) : [];
+            const item = products.find(p => p.id === productId);
+
+            if (!item) {
+                alert('Không tìm thấy thông tin món ăn này!');
+                window.location.href = '/Admin/Index.html';
+                return;
+            }
+
+            const numPrice = typeof item.price === 'string' ? parseInt(item.price.replace(/\D/g, '')) || 0 : item.price;
+
+            document.getElementById('edit-id').value = item.id;
+            document.getElementById('edit-name').value = item.title || '';
+            document.getElementById('edit-category').value = item.category || 'Sữa Tươi';
+            document.getElementById('edit-price').value = numPrice;
+            document.getElementById('edit-calo').value = item.calo || 100;
+            document.getElementById('edit-status').value = item.status || 'Đang Bán';
+            document.getElementById('edit-image').value = item.img || '';
+            document.getElementById('edit-desc').value = item.desc || '';
+
+            document.getElementById('edit-sale').checked = !!item.isOnSale;
+            document.getElementById('edit-discount').value = item.discountPercent || '';
+            document.getElementById('edit-salenote').value = item.saleNote || '';
+        });
+
+        // 2. Lưu đè dữ liệu mới vào localStorage
         function handleSaveEdit(e) {
             e.preventDefault();
-            const name = document.getElementById('edit-name').value;
-            alert('Cập nhật thành công cho món: ' + name);
+
+            const id = parseInt(document.getElementById('edit-id').value);
+            const title = document.getElementById('edit-name').value.trim();
+            const category = document.getElementById('edit-category').value.trim();
+            const price = parseInt(document.getElementById('edit-price').value) || 0;
+            const calo = parseInt(document.getElementById('edit-calo').value) || 100;
+            const status = document.getElementById('edit-status').value;
+            let img = document.getElementById('edit-image').value.trim();
+            if (!img) {
+                img = "https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=600&q=80";
+            }
+            const desc = document.getElementById('edit-desc').value.trim();
+
+            const isOnSale = document.getElementById('edit-sale').checked;
+            const discountPercent = parseInt(document.getElementById('edit-discount').value) || 0;
+            const saleNote = document.getElementById('edit-salenote').value.trim() || (isOnSale ? `GIẢM ${discountPercent}%` : '');
+
+            const stored = localStorage.getItem('lymap_products');
+            let products = stored ? JSON.parse(stored) : [];
+
+            products = products.map(p => {
+                if (p.id === id) {
+                    return {
+                        ...p,
+                        title,
+                        category,
+                        price,
+                        calo,
+                        status,
+                        img,
+                        desc,
+                        isOnSale,
+                        discountPercent: isOnSale ? discountPercent : 0,
+                        saleNote: isOnSale ? saleNote : ''
+                    };
+                }
+                return p;
+            });
+
+            localStorage.setItem('lymap_products', JSON.stringify(products));
+            alert('Đã cập nhật món "' + title + '" thành công!');
             window.location.href = '/Admin/Index.html';
         }
     </script>
