@@ -22,49 +22,53 @@
         <form onsubmit="handleCreateProduct(event)" class="space-y-4">
             <div>
                 <label class="block text-xs font-black mb-1">TÊN SẢN PHẨM:</label>
-                <input type="text" id="new-name" placeholder="VD: Sữa Hạt Sen Tươi" class="w-full bg-[#FFFBF2] p-3 rounded-xl border-2 border-[#2D2A26] text-xs font-bold focus:outline-none focus:border-[#E0533C]" required />
+                <input type="text" id="new-name" placeholder="VD: Trà Dâu Tươi Tây Bắc" class="w-full bg-[#FFFBF2] p-3 rounded-xl border-2 border-[#2D2A26] text-xs font-bold focus:outline-none focus:border-[#E0533C]" required />
             </div>
 
             <div class="grid grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-xs font-black mb-1">DANH MỤC:</label>
-                    <select id="new-category" class="w-full bg-[#FFFBF2] p-3 rounded-xl border-2 border-[#2D2A26] text-xs font-bold focus:outline-none">
-                        <option value="sua">Sữa Tươi</option>
-                        <option value="comchay">Cơm Cháy</option>
-                        <option value="topping">Topping</option>
-                    </select>
+                    <label class="block text-xs font-black mb-1">DANH MỤC (CHỌN HOẶC GÕ MỚI):</label>
+                    <!-- Cho phép chọn có sẵn hoặc gõ danh mục mới thoải mái -->
+                    <input list="category-list" id="new-category" placeholder="Chọn hoặc nhập danh mục mới" class="w-full bg-[#FFFBF2] p-3 rounded-xl border-2 border-[#2D2A26] text-xs font-bold focus:outline-none focus:border-[#E0533C]" required />
+                    <datalist id="category-list">
+                        <option value="Sữa Tươi">
+                        <option value="Cơm Cháy">
+                        <option value="Topping">
+                        <option value="Trà Trái Cây">
+                        <option value="Ăn Vặt">
+                    </datalist>
                 </div>
                 <div>
                     <label class="block text-xs font-black mb-1">GIÁ BÁN (VNĐ):</label>
-                    <input type="number" id="new-price" placeholder="VD: 15000" class="w-full bg-[#FFFBF2] p-3 rounded-xl border-2 border-[#2D2A26] text-xs font-bold focus:outline-none focus:border-[#E0533C]" required />
+                    <input type="number" id="new-price" placeholder="VD: 25000" class="w-full bg-[#FFFBF2] p-3 rounded-xl border-2 border-[#2D2A26] text-xs font-bold focus:outline-none focus:border-[#E0533C]" required />
                 </div>
             </div>
 
             <div class="grid grid-cols-2 gap-4">
                 <div>
                     <label class="block text-xs font-black mb-1">CALO (KCAL):</label>
-                    <input type="number" id="new-calo" placeholder="VD: 130" class="w-full bg-[#FFFBF2] p-3 rounded-xl border-2 border-[#2D2A26] text-xs font-bold focus:outline-none focus:border-[#E0533C]" required />
+                    <input type="number" id="new-calo" placeholder="VD: 120" class="w-full bg-[#FFFBF2] p-3 rounded-xl border-2 border-[#2D2A26] text-xs font-bold focus:outline-none focus:border-[#E0533C]" />
                 </div>
                 <div>
-                    <label class="block text-xs font-black mb-1">LINK HÌNH ẢNH (URL):</label>
-                    <input type="url" id="new-img" placeholder="https://..." class="w-full bg-[#FFFBF2] p-3 rounded-xl border-2 border-[#2D2A26] text-xs font-bold focus:outline-none focus:border-[#E0533C]" required />
+                    <label class="block text-xs font-black mb-1">LINK HÌNH ẢNH (BỎ TRỐNG NẾU CHƯA CÓ):</label>
+                    <input type="text" id="new-img" placeholder="https://... (Không bắt buộc)" class="w-full bg-[#FFFBF2] p-3 rounded-xl border-2 border-[#2D2A26] text-xs font-bold focus:outline-none focus:border-[#E0533C]" />
                 </div>
             </div>
 
             <div>
                 <label class="block text-xs font-black mb-1">MÔ TẢ NGẮN:</label>
-                <textarea id="new-desc" rows="2" placeholder="VD: Thơm bùi hạt sen, thanh mát tốt cho giấc ngủ..." class="w-full bg-[#FFFBF2] p-3 rounded-xl border-2 border-[#2D2A26] text-xs font-bold focus:outline-none focus:border-[#E0533C]"></textarea>
+                <textarea id="new-desc" rows="2" placeholder="VD: Hương vị thơm ngon thanh mát tự nhiên..." class="w-full bg-[#FFFBF2] p-3 rounded-xl border-2 border-[#2D2A26] text-xs font-bold focus:outline-none focus:border-[#E0533C]"></textarea>
             </div>
 
-            <!-- Cài khuyến mãi lúc tạo luôn nếu muốn -->
+            <!-- Cài khuyến mãi lúc tạo -->
             <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
                 <label class="flex items-center gap-2 cursor-pointer">
                     <input type="checkbox" id="new-sale" class="w-4 h-4 text-[#E0533C] rounded focus:ring-0" />
                     <span class="text-xs font-black text-slate-800">ÁP DỤNG KHUYẾN MÃI NGAY KHI TẠO</span>
                 </label>
                 <div class="grid grid-cols-2 gap-3">
-                    <input type="number" id="new-discount" placeholder="% Giảm (VD: 15)" min="1" max="90" class="bg-white p-2.5 rounded-xl border border-slate-300 text-xs font-bold" />
-                    <input type="text" id="new-salenote" placeholder="Badge (VD: MÓN MỚI)" class="bg-white p-2.5 rounded-xl border border-slate-300 text-xs font-bold" />
+                    <input type="number" id="new-discount" placeholder="% Giảm (VD: 20)" min="1" max="90" class="bg-white p-2.5 rounded-xl border border-slate-300 text-xs font-bold" />
+                    <input type="text" id="new-salenote" placeholder="Nhãn Sale (VD: SALE 20%)" class="bg-white p-2.5 rounded-xl border border-slate-300 text-xs font-bold" />
                 </div>
             </div>
 
@@ -78,30 +82,32 @@
         function handleCreateProduct(e) {
             e.preventDefault();
 
-            // 1. Lấy dữ liệu từ form
             const title = document.getElementById('new-name').value.trim();
-            const category = document.getElementById('new-category').value;
+            const rawCategory = document.getElementById('new-category').value.trim();
             const price = parseInt(document.getElementById('new-price').value) || 0;
             const calo = parseInt(document.getElementById('new-calo').value) || 100;
-            const img = document.getElementById('new-img').value.trim();
-            const desc = document.getElementById('new-desc').value.trim() || 'Thơm ngon, chuẩn vị nguyên chất.';
+            let img = document.getElementById('new-img').value.trim();
+
+            // Ảnh mặc định nếu người dùng không điền link ảnh
+            if (!img) {
+                img = "https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=600&q=80";
+            }
+
+            const desc = document.getElementById('new-desc').value.trim() || 'Hương vị thơm ngon, tự nhiên mỗi ngày.';
 
             const isOnSale = document.getElementById('new-sale').checked;
             const discountPercent = parseInt(document.getElementById('new-discount').value) || 0;
             const saleNote = document.getElementById('new-salenote').value.trim() || (isOnSale ? `GIẢM ${discountPercent}%` : '');
 
-            // 2. Đọc danh sách hiện có từ localStorage
             const stored = localStorage.getItem('lymap_products');
             let products = stored ? JSON.parse(stored) : [];
 
-            // 3. Tự động sinh ID mới duy nhất
             const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
 
-            // 4. Tạo đối tượng món mới
             const newProduct = {
                 id: newId,
                 title: title,
-                category: category,
+                category: rawCategory,
                 price: price,
                 calo: calo,
                 img: img,
@@ -110,15 +116,14 @@
                 isOnSale: isOnSale,
                 discountPercent: isOnSale ? discountPercent : 0,
                 saleNote: saleNote,
-                batch: "Vừa nấu",
-                sold: "Món mới"
+                batch: "Mới ra lò",
+                sold: "Mới"
             };
 
-            // 5. Lưu vào localStorage và quay về trang quản trị
             products.push(newProduct);
             localStorage.setItem('lymap_products', JSON.stringify(products));
 
-            alert('Đã thêm món "' + title + '" thành công!');
+            alert('Đã thêm món "' + title + '" vào danh mục [' + rawCategory + '] thành công!');
             window.location.href = '/Admin/Index.html';
         }
     </script>
