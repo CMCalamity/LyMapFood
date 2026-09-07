@@ -373,13 +373,8 @@
                 <p class="font-body-md text-body-md text-on-surface-variant mt-2">Bấm vào từng món để xem thông tin dinh dưỡng và cách bảo quản!</p>
             </div>
 
-            <!-- Tab Lọc Món -->
-            <div class="flex flex-wrap justify-center gap-3 mb-10">
-                <button onclick="filterMenu('all', this)" class="filter-btn bg-primary text-on-primary font-label-bold text-label-bold px-6 py-2.5 rounded-full whitespace-nowrap active:scale-95 shadow-sm transition">Tất Cả</button>
-                <button onclick="filterMenu('sua', this)" class="filter-btn bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed font-label-bold text-label-bold px-6 py-2.5 rounded-full whitespace-nowrap active:scale-95 transition">Sữa Tươi</button>
-                <button onclick="filterMenu('comchay', this)" class="filter-btn bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed font-label-bold text-label-bold px-6 py-2.5 rounded-full whitespace-nowrap active:scale-95 transition">Cơm Cháy</button>
-                <button onclick="filterMenu('topping', this)" class="filter-btn bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed font-label-bold text-label-bold px-6 py-2.5 rounded-full whitespace-nowrap active:scale-95 transition">Topping</button>
-            </div>
+            <!-- Tab Lọc Món Tự Động Sinh Động Từ Dữ Liệu Admin -->
+            <div id="category-tabs" class="flex flex-wrap justify-center gap-3 mb-10"></div>
 
             <!-- Grid Sản Phẩm Render Động Tương Thích Khuyến Mãi -->
             <div id="product-grid" class="grid grid-cols-1 md:grid-cols-3 gap-gutter"></div>
@@ -700,7 +695,7 @@
         </div>
     </footer>
 
-    <!-- SCRIPT ĐIỀU KHIỂN & ĐỒNG BỘ DỮ LIỆU -->
+    <!-- SCRIPT ĐIỀU KHIỂN & ĐỒNG BỘ DỮ LIỆU TỰ ĐỘNG -->
     <script>
         lucide.createIcons();
 
@@ -709,7 +704,7 @@
         const DEFAULT_MENU = {
             1: {
                 id: 1,
-                category: "sua",
+                category: "Sữa Tươi",
                 title: "Sữa Đậu Nành Tươi",
                 price: 10000,
                 calo: "120",
@@ -732,7 +727,7 @@
             },
             2: {
                 id: 2,
-                category: "sua",
+                category: "Sữa Tươi",
                 title: "Sữa Bắp Tươi",
                 price: 15000,
                 calo: "160",
@@ -755,7 +750,7 @@
             },
             3: {
                 id: 3,
-                category: "sua",
+                category: "Sữa Tươi",
                 title: "Sữa Đậu Đỏ",
                 price: 15000,
                 calo: "140",
@@ -778,7 +773,7 @@
             },
             4: {
                 id: 4,
-                category: "comchay",
+                category: "Cơm Cháy",
                 title: "Cơm Cháy Chà Bông",
                 price: 35000,
                 calo: "380",
@@ -801,7 +796,7 @@
             },
             5: {
                 id: 5,
-                category: "comchay",
+                category: "Cơm Cháy",
                 title: "Cơm Cháy Mắm Hành",
                 price: 30000,
                 calo: "320",
@@ -824,7 +819,7 @@
             },
             6: {
                 id: 6,
-                category: "topping",
+                category: "Topping",
                 title: "Thạch Lá Nếp & Trân Châu",
                 price: 5000,
                 calo: "60",
@@ -849,6 +844,48 @@
 
         let currentDisplayProducts = {};
 
+        // Chuẩn hóa tên danh mục để so khớp đồng bộ
+        function normalizeCategory(cat) {
+            if (!cat) return 'Khác';
+            const c = cat.trim().toLowerCase();
+            if (c === 'sua' || c === 'sữa tươi') return 'Sữa Tươi';
+            if (c === 'comchay' || c === 'cơm cháy') return 'Cơm Cháy';
+            if (c === 'topping') return 'Topping';
+            return cat.trim();
+        }
+
+        // Tự động sinh danh mục tab ngoài trang chủ
+        function renderCategoryTabs() {
+            const tabContainer = document.getElementById('category-tabs');
+            if (!tabContainer) return;
+
+            const categories = ['Tất Cả'];
+            Object.values(currentDisplayProducts).forEach(item => {
+                const normCat = normalizeCategory(item.category);
+                if (!categories.includes(normCat)) {
+                    categories.push(normCat);
+                }
+            });
+
+            tabContainer.innerHTML = '';
+            categories.forEach((cat, index) => {
+                const btn = document.createElement('button');
+                btn.innerText = cat;
+                btn.className = index === 0
+                    ? "filter-btn bg-primary text-on-primary font-label-bold text-label-bold px-6 py-2.5 rounded-full whitespace-nowrap active:scale-95 shadow-sm transition"
+                    : "filter-btn bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed font-label-bold text-label-bold px-6 py-2.5 rounded-full whitespace-nowrap active:scale-95 transition";
+
+                btn.onclick = () => {
+                    document.querySelectorAll('.filter-btn').forEach(b => {
+                        b.className = "filter-btn bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed font-label-bold text-label-bold px-6 py-2.5 rounded-full whitespace-nowrap active:scale-95 transition";
+                    });
+                    btn.className = "filter-btn bg-primary text-on-primary font-label-bold text-label-bold px-6 py-2.5 rounded-full whitespace-nowrap active:scale-95 shadow-sm transition";
+                    renderMenuGrid(cat === 'Tất Cả' ? 'all' : cat);
+                };
+                tabContainer.appendChild(btn);
+            });
+        }
+
         function loadSyncedMenu() {
             const saved = localStorage.getItem('lymap_products');
             if (saved) {
@@ -866,6 +903,7 @@
                 const adminInitial = Object.values(DEFAULT_MENU).map(p => ({
                     id: p.id,
                     title: p.title,
+                    category: p.category,
                     price: p.price,
                     calo: p.calo,
                     img: p.img,
@@ -876,6 +914,7 @@
                 }));
                 localStorage.setItem('lymap_products', JSON.stringify(adminInitial));
             }
+            renderCategoryTabs();
             renderMenuGrid();
         }
 
@@ -885,7 +924,8 @@
             container.innerHTML = '';
 
             Object.values(currentDisplayProducts).forEach(item => {
-                if (filter !== 'all' && item.category !== filter) return;
+                const normCat = normalizeCategory(item.category);
+                if (filter !== 'all' && normCat !== filter) return;
 
                 const numPrice = typeof item.price === 'string' ? parseInt(item.price.replace(/\D/g, '')) || 0 : item.price;
                 const isOnSale = item.isOnSale && item.discountPercent > 0;
@@ -893,7 +933,7 @@
 
                 const card = document.createElement('div');
                 card.className = "menu-card bg-surface-container-lowest rounded-[32px] p-5 soft-shadow hover:shadow-xl hover:shadow-primary/15 transition-all duration-300 hover:-translate-y-2 border border-tertiary-fixed-dim cursor-pointer group";
-                card.setAttribute('data-category', item.category || 'sua');
+                card.setAttribute('data-category', normCat);
                 card.onclick = () => openDetail(item.id);
 
                 card.innerHTML = `
@@ -914,7 +954,7 @@
                             <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">${item.desc || 'Thơm ngon, đậm vị tự nhiên.'}</p>
                             <div class="pt-2 flex justify-between items-center text-xs border-t border-surface-container-high font-semibold">
                                 <span class="text-primary flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> ${item.batch || 'Đang sẵn hàng'}</span>
-                                <span class="text-slate-400">Phần tươi</span>
+                                <span class="text-slate-400">${normCat}</span>
                             </div>
                         </div>
                     `;
@@ -968,16 +1008,6 @@
 
         function closeDetail() {
             document.getElementById('product-modal').classList.add('hidden');
-        }
-
-        function filterMenu(category, btnElement) {
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.className = "filter-btn bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed font-label-bold text-label-bold px-6 py-2.5 rounded-full whitespace-nowrap active:scale-95 transition";
-            });
-            if (btnElement) {
-                btnElement.className = "filter-btn bg-primary text-on-primary font-label-bold text-label-bold px-6 py-2.5 rounded-full whitespace-nowrap active:scale-95 shadow-sm transition";
-            }
-            renderMenuGrid(category);
         }
 
         function toggleSearchBar() {
