@@ -5,13 +5,11 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Lý Mập Food - Freshness in Motion</title>
 
-    <!-- GOOGLE FONTS & MATERIAL ICONS -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800;900&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
-    <!-- TAILWIND CSS CDN & CONFIGURATION -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script id="tailwind-config">
@@ -206,7 +204,6 @@
             </div>
         </nav>
 
-        <!-- Dropdown Search Bar -->
         <div id="search-bar-container" class="hidden bg-white border-b border-surface-container-high px-4 py-3 shadow-md">
             <div class="max-w-xl mx-auto relative flex items-center">
                 <span class="material-symbols-outlined text-slate-400 absolute left-3">search</span>
@@ -298,7 +295,7 @@
             </div>
         </section>
 
-        <!-- 5. BENTO GRID BẢO CHỨNG LÒNG TIN -->
+        <!-- 5. BẢO CHỨNG LÒNG TIN -->
         <section id="highlights" class="py-20 px-margin-mobile md:px-margin-desktop bg-surface-container-low">
             <div class="max-w-container-max mx-auto">
                 <h2 class="font-headline-md text-headline-md text-on-surface mb-12 text-center fade-in-up">Lời Hứa Người Bạn Khỏe Mạnh</h2>
@@ -340,7 +337,7 @@
             </div>
         </section>
 
-        <!-- 6. GALLERY BỘ SƯU TẬP HÌNH ẢNH THỰC TẾ -->
+        <!-- 6. GALLERY BỘ SƯU TẬP -->
         <section id="gallery" class="py-16 px-margin-mobile md:px-margin-desktop bg-surface">
             <div class="max-w-container-max mx-auto space-y-10">
                 <div class="text-center max-w-2xl mx-auto">
@@ -365,7 +362,7 @@
             </div>
         </section>
 
-        <!-- 7. THỰC ĐƠN SẢN PHẨM -->
+        <!-- 7. THỰC ĐƠN ĐỒNG BỘ LOCALSTORAGE -->
         <section id="menu" class="py-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
             <div class="text-center max-w-2xl mx-auto mb-12">
                 <span class="inline-block bg-primary-fixed text-on-primary-fixed-variant px-4 py-1 rounded-full font-label-sm text-label-sm uppercase tracking-wider">Thực Đơn Bình Dân</span>
@@ -373,17 +370,13 @@
                 <p class="font-body-md text-body-md text-on-surface-variant mt-2">Bấm vào từng món để xem thông tin dinh dưỡng và cách bảo quản!</p>
             </div>
 
-            <!-- Tab Lọc Món Tự Động Sinh Động Từ Dữ Liệu Admin -->
             <div id="category-tabs" class="flex flex-wrap justify-center gap-3 mb-10"></div>
-
-            <!-- Grid Sản Phẩm Render Động Tương Thích Khuyến Mãi -->
             <div id="product-grid" class="grid grid-cols-1 md:grid-cols-3 gap-gutter"></div>
         </section>
 
         <!-- 8. MODAL CHI TIẾT SẢN PHẨM -->
         <div id="product-modal" class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 hidden overflow-y-auto">
             <div class="bg-white rounded-[2rem] max-w-3xl w-full p-0 shadow-2xl relative border border-slate-100 animate-fade-in-up my-auto overflow-hidden flex flex-col md:flex-row">
-
                 <button onclick="closeDetail()" class="absolute top-4 right-4 bg-slate-100/90 text-slate-700 w-8 h-8 rounded-full flex items-center justify-center font-bold hover:bg-slate-200 transition z-50 shadow-sm" title="Đóng">
                     ✕
                 </button>
@@ -492,7 +485,7 @@
             </div>
         </div>
 
-        <!-- 9. CÔNG CỤ TỰ MIX LY SỮA & TÍNH CALO -->
+        <!-- 9. TỰ MIX LY SỮA & TÍNH CALO -->
         <section id="calculator" class="py-20 px-margin-mobile md:px-margin-desktop bg-surface-container-low border-t border-surface-container-high">
             <div class="max-w-container-max mx-auto">
                 <div class="text-center max-w-2xl mx-auto mb-12">
@@ -600,7 +593,7 @@
             </div>
         </section>
 
-        <!-- 10. LIÊN HỆ & FORM ĐÁNH GIÁ GÓP Ý -->
+        <!-- 10. LIÊN HỆ -->
         <section id="contact" class="py-20 px-margin-mobile md:px-margin-desktop bg-surface-container-lowest border-t border-surface-container-high">
             <div class="max-w-container-max mx-auto grid lg:grid-cols-2 gap-12 items-start">
                 <div class="space-y-6">
@@ -643,7 +636,6 @@
                     </div>
                 </div>
 
-                <!-- Form Đánh Giá & Góp Ý -->
                 <div class="bg-surface-container-low p-6 sm:p-8 rounded-[32px] space-y-4 border border-tertiary-fixed-dim">
                     <h3 class="font-headline-sm text-headline-sm text-primary">GỬI GÓP Ý & ĐÁNH GIÁ CHẤT LƯỢNG</h3>
                     <p class="font-body-md text-body-md text-xs text-on-surface-variant">Ý kiến của bạn giúp Lý Mập Food hoàn thiện chất lượng và dịch vụ tốt hơn mỗi ngày!</p>
@@ -695,7 +687,7 @@
         </div>
     </footer>
 
-    <!-- SCRIPT ĐIỀU KHIỂN & ĐỒNG BỘ DỮ LIỆU TỰ ĐỘNG -->
+    <!-- SCRIPT ĐIỀU KHIỂN & ĐỒNG BỘ LOCALSTORAGE -->
     <script>
         lucide.createIcons();
 
@@ -710,8 +702,8 @@
                 calo: "120",
                 img: "https://images.unsplash.com/photo-1528750997573-59b89d56f4f7?auto=format&fit=crop&w=600&q=80",
                 desc: "Vị béo ngậy mộc mạc tự nhiên từ hạt đậu nành mới nấu.",
-                ingredients: "100% Đậu nành hữu cơ nguyên chất, nước lọc tinh khiết, đường phèn tự nhiên (có tùy chọn không đường).",
-                benefits: "Giàu đạm thực vật, Isoflavone tốt cho tim mạch, hỗ trợ làm đẹp da và cân bằng vóc dáng.",
+                ingredients: "100% Đậu nành hữu cơ nguyên chất, nước lọc tinh khiết, đường phèn tự nhiên.",
+                benefits: "Giàu đạm thực vật, Isoflavone tốt cho tim mạch, hỗ trợ làm đẹp da.",
                 batch: "09:30 AM",
                 sold: "4.520+",
                 protein: "6.8g",
@@ -733,8 +725,8 @@
                 calo: "160",
                 img: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
                 desc: "Thơm lừng mùi bắp ngọt non, vị ngọt thanh dịu dàng.",
-                ingredients: "Bắp ngọt tươi bẻ trong ngày tại Biên Hòa, sữa tươi tiệt trùng, đường phèn thanh dịu.",
-                benefits: "Cung cấp Vitamin A sáng mắt, giàu chất xơ tự nhiên hỗ trợ hệ tiêu hóa hoạt động khỏe mạnh.",
+                ingredients: "Bắp ngọt tươi bẻ trong ngày tại Biên Hòa, sữa tươi tiệt trùng, đường phèn.",
+                benefits: "Cung cấp Vitamin A sáng mắt, giàu chất xơ tự nhiên hỗ trợ tiêu hóa.",
                 batch: "10:00 AM",
                 sold: "3.210+",
                 protein: "3.5g",
@@ -756,8 +748,8 @@
                 calo: "140",
                 img: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=600&q=80",
                 desc: "Bổ máu, thanh mát cơ thể, giải nhiệt hiệu quả ngày hè.",
-                ingredients: "Đậu đỏ hạt nhỏ ninh mềm, nước hầm cô đặc giữ trọn chất, đường thanh.",
-                benefits: "Bổ máu, chứa nhiều chất chống oxy hóa, thanh nhiệt giải độc cơ thể hiệu quả.",
+                ingredients: "Đậu đỏ hạt nhỏ ninh mềm, nước hầm cô đặc, đường thanh.",
+                benefits: "Bổ máu, chứa nhiều chất chống oxy hóa, thanh nhiệt giải độc.",
                 batch: "08:30 AM",
                 sold: "1.890+",
                 protein: "5.2g",
@@ -779,8 +771,8 @@
                 calo: "380",
                 img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80",
                 desc: "Giòn rụm, chà bông ngập tràn kèm sốt mắm ớt cay mặn ngọt.",
-                ingredients: "Gạo nếp dẻo sấy giòn tan, chà bông thịt heo hảo hạng phủ ngập mặt, sốt mắm ớt kẹo độc quyền.",
-                benefits: "Món ăn vặt thơm giòn kết hợp trọn vẹn cùng ly sữa tươi mát lạnh.",
+                ingredients: "Gạo nếp dẻo sấy giòn tan, chà bông thịt heo hảo hạng, sốt mắm ớt.",
+                benefits: "Món ăn vặt thơm giòn kết hợp trọn vẹn cùng ly sữa tươi.",
                 batch: "Mới sấy",
                 sold: "5.600+",
                 protein: "16.5g",
@@ -802,7 +794,7 @@
                 calo: "320",
                 img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80",
                 desc: "Sốt mắm hành dẻo kẹo thơm nức mũi, ăn vặt cực bắt miệng.",
-                ingredients: "Gạo nếp chiên phồng xốp giòn, mỡ hành lá tươi thơm phức, nước mắm ớt rim kẹo dẻo.",
+                ingredients: "Gạo nếp chiên phồng xốp giòn, mỡ hành lá tươi, nước mắm rim kẹo.",
                 benefits: "Vị cay mặn ngọt béo hài hòa, giòn rụm bắt miệng.",
                 batch: "Đang nấu",
                 sold: "2.100+",
@@ -825,8 +817,8 @@
                 calo: "60",
                 img: "https://images.unsplash.com/photo-1558857563-b371033873b8?auto=format&fit=crop&w=600&q=80",
                 desc: "Topping dai giòn sần sật, thanh mát và thơm dịu lá nếp.",
-                ingredients: "Lá nếp tươi nấu thạch dẻo xanh mướt, trân châu nếp cẩm dẻo bùi, sương sáo thanh mát.",
-                benefits: "Tăng thêm độ hấp dẫn và vui miệng cho ly sữa tươi nhà làm.",
+                ingredients: "Lá nếp tươi nấu thạch dẻo xanh mướt, trân châu nếp cẩm, sương sáo.",
+                benefits: "Tăng thêm độ hấp dẫn và vui miệng cho ly sữa tươi.",
                 batch: "Sẵn hàng",
                 sold: "4.100+",
                 protein: "0.5g",
@@ -844,7 +836,6 @@
 
         let currentDisplayProducts = {};
 
-        // Chuẩn hóa tên danh mục để so khớp đồng bộ
         function normalizeCategory(cat) {
             if (!cat) return 'Khác';
             const c = cat.trim().toLowerCase();
@@ -854,7 +845,6 @@
             return cat.trim();
         }
 
-        // Tự động sinh danh mục tab ngoài trang chủ
         function renderCategoryTabs() {
             const tabContainer = document.getElementById('category-tabs');
             if (!tabContainer) return;
@@ -984,7 +974,6 @@
             document.getElementById('modal-protein-val').innerText = item.protein || '5.5g';
             document.getElementById('modal-carbs-val').innerText = item.carbs || '18.0g';
             document.getElementById('modal-fat-val').innerText = item.fat || '3.5g';
-
             document.getElementById('modal-health-score').innerText = item.score || '9.5';
 
             const pctP = item.pctProtein || 25;
@@ -993,10 +982,8 @@
 
             document.getElementById('bar-protein-text').innerText = pctP + '%';
             document.getElementById('bar-protein').style.width = pctP + '%';
-
             document.getElementById('bar-carbs-text').innerText = pctC + '%';
             document.getElementById('bar-carbs').style.width = pctC + '%';
-
             document.getElementById('bar-fat-text').innerText = pctF + '%';
             document.getElementById('bar-fat').style.width = pctF + '%';
 
@@ -1094,11 +1081,9 @@
         function selectBase(name, calo, btnElement) {
             currentBase = name;
             currentBaseCalo = calo;
-
             document.querySelectorAll('.base-btn').forEach(btn => {
                 btn.className = "base-btn py-3 px-2 text-xs font-bold rounded-2xl bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed transition";
             });
-
             if (btnElement) {
                 btnElement.className = "base-btn active-btn py-3 px-2 text-xs font-bold rounded-2xl bg-primary text-on-primary shadow-sm transition";
             }
@@ -1110,7 +1095,6 @@
             document.querySelectorAll('.sugar-btn').forEach(btn => {
                 btn.className = "sugar-btn py-2.5 text-xs font-bold rounded-2xl bg-surface-container-high text-on-surface-variant hover:bg-tertiary-fixed transition";
             });
-
             if (btnElement) {
                 btnElement.className = "sugar-btn active-btn py-2.5 text-xs font-bold rounded-2xl bg-secondary-container text-on-secondary-container shadow-sm transition";
             }
